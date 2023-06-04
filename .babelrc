@@ -1,0 +1,36 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": {
+          "esmodules": true
+        },
+        "loose": false // Ajouter cette option
+      }
+    ],
+    ["minify"]
+  ],
+  "comments": false,
+  "plugins": [
+    [
+      "@babel/plugin-proposal-decorators",
+      { "legacy": true }
+    ],
+    [
+      "@babel/plugin-proposal-class-properties",
+      { "loose": false } // Modifier cette option à false
+    ],
+    [
+      "@babel/plugin-proposal-private-methods",
+      { "loose": false } // Ajouter ce plugin avec l'option
+    ],
+    [
+      "@babel/plugin-proposal-private-property-in-object",
+      { "loose": false } // Ajouter ce plugin avec l'option
+    ],
+    ["@babel/plugin-transform-template-literals"],
+    ["iife-wrap"]
+  ]
+}
