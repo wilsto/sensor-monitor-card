@@ -4,8 +4,7 @@
 
 > A fully customizable monitoring card — define your own sensors, units, setpoints, and thresholds for any use case.
 
-<!-- TODO: add hero screenshot -->
-<!-- ![screenshot](example/hero.png) -->
+![screenshot](example/hero.png)
 
 ---
 
@@ -153,8 +152,8 @@ This card is part of the **monitor-cards** family — same rendering engine, sam
 
 <!-- Badges -->
 [release-shield]: https://img.shields.io/github/v/release/wilsto/sensor-monitor-card?style=flat-square
-[release-link]: https://github.com/wilsto/sensor-monitor-card/releases
+[release-link]: https://github.com/wilsto/sensor-monitor-card/releases/latest
 [hacs-shield]: https://img.shields.io/badge/HACS-Default-orange.svg?style=flat-square
 [hacs-link]: https://hacs.xyz/
 [commits-shield]: https://img.shields.io/github/commit-activity/y/wilsto/sensor-monitor-card?style=flat-square
-[commits-link]: https://github.com/wilsto/sensor-monitor-card/commits/master
+[commits-link]: https://github.com/wilsto/sensor-monitor-card/commits/main
