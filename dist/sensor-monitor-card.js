@@ -1,1 +1,444 @@
-(function(){"use strict";function b(a,b){return b||(b=a.slice(0)),Object.freeze(Object.defineProperties(a,{raw:{value:Object.freeze(b)}}))}function c(a,b){var c=Object.keys(a);if(Object.getOwnPropertySymbols){var d=Object.getOwnPropertySymbols(a);b&&(d=d.filter(function(b){return Object.getOwnPropertyDescriptor(a,b).enumerable})),c.push.apply(c,d)}return c}function d(a){for(var b,d=1;d<arguments.length;d++)b=null==arguments[d]?{}:arguments[d],d%2?c(Object(b),!0).forEach(function(c){e(a,c,b[c])}):Object.getOwnPropertyDescriptors?Object.defineProperties(a,Object.getOwnPropertyDescriptors(b)):c(Object(b)).forEach(function(c){Object.defineProperty(a,c,Object.getOwnPropertyDescriptor(b,c))});return a}function e(a,b,c){return b=f(b),b in a?Object.defineProperty(a,b,{value:c,enumerable:!0,configurable:!0,writable:!0}):a[b]=c,a}function f(a){var b=g(a,"string");return"symbol"==typeof b?b:b+""}function g(a,b){if("object"!=typeof a||null===a)return a;var c=a[Symbol.toPrimitive];if(c!==void 0){var d=c.call(a,b||"default");if("object"!=typeof d)return d;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===b?String:Number)(a)}function h(a,b,c,d,e,f,g){try{var h=a[f](g),i=h.value}catch(a){return void c(a)}h.done?b(i):Promise.resolve(i).then(d,e)}function i(a){return function(){var b=this,c=arguments;return new Promise(function(d,e){function f(a){h(i,d,e,f,g,"next",a)}function g(a){h(i,d,e,f,g,"throw",a)}var i=a.apply(b,c);f(void 0)})}}var q,r,s,t,u,v,w;(function(a){"function"==typeof define&&define.amd?define(a):a()})(function(){var D=Math.floor;function F(a,b){var c,f,g,j,k=2<arguments.length&&arguments[2]!==void 0?arguments[2]:a,m=3<arguments.length?arguments[3]:void 0;if(b===x)return b;var e=void 0===m?k._$Cl:null===(c=k._$Co)||void 0===c?void 0:c[m],p=qa(b)?void 0:b._$litDirective$;return(null==e?void 0:e.constructor)!==p&&(null===(f=null==e?void 0:e._$AO)||void 0===f||f.call(e,!1),void 0===p?e=void 0:(e=new p(a),e._$AT(a,k,m)),void 0===m?k._$Cl=e:(null!==(g=(j=k)._$Co)&&void 0!==g?g:j._$Co=[])[m]=e),void 0!==e&&(b=F(a,e._$AS(a,b.values),e,m)),b}function G(a){return class extends a{createRenderRoot(){var a=this.constructor,{registry:b,elementDefinitions:c,shadowRootOptions:e}=a;c&&!b&&(a.registry=new CustomElementRegistry,Object.entries(c).forEach(b=>{var[c,d]=b;return a.registry.define(c,d)}));var f=this.renderOptions.creationScope=this.attachShadow(d(d({},e),{},{customElements:a.registry}));return W(f,this.constructor.elementStyles),f}}}var e,J=window,K=J.ShadowRoot&&(void 0===J.ShadyCSS||J.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,N=Symbol(),O=new WeakMap,Q=class a{constructor(a,b,c){if(this._$cssResult$=!0,c!==N)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=a,this.t=b}get styleSheet(){var a=this.o,b=this.t;if(K&&void 0===a){var c=void 0!==b&&1===b.length;c&&(a=O.get(b)),void 0===a&&((this.o=a=new CSSStyleSheet).replaceSync(this.cssText),c&&O.set(b,a))}return a}toString(){return this.cssText}},U=a=>new Q("string"==typeof a?a:a+"",void 0,N),W=(a,b)=>{K?a.adoptedStyleSheets=b.map(a=>a instanceof CSSStyleSheet?a:a.styleSheet):b.forEach(b=>{var c=document.createElement("style"),d=J.litNonce;void 0!==d&&c.setAttribute("nonce",d),c.textContent=b.cssText,a.appendChild(c)})},X=K?a=>a:a=>a instanceof CSSStyleSheet?(a=>{var b="";for(var c of a.cssRules)b+=c.cssText;return U(b)})(a):a,Y=window,Z=Y.trustedTypes,aa=Z?Z.emptyScript:"",ba=Y.reactiveElementPolyfillSupport,ca={toAttribute(a,b){return b===Boolean?a=a?aa:null:b===Object||b===Array?a=null==a?a:JSON.stringify(a):void 0,a},fromAttribute(a,b){var c=a;switch(b){case Boolean:c=null!==a;break;case Number:c=null===a?null:+a;break;case Object:case Array:try{c=JSON.parse(a)}catch(a){c=null}}return c}},da=(a,b)=>b!==a&&(b==b||a==a),ea={attribute:!0,type:String,converter:ca,reflect:!1,hasChanged:da},fa=class a extends HTMLElement{constructor(){super(),this._$Ei=new Map,this.isUpdatePending=!1,this.hasUpdated=!1,this._$El=null,this.u()}static addInitializer(a){var b;this.finalize(),(null!==(b=this.h)&&void 0!==b?b:this.h=[]).push(a)}static get observedAttributes(){this.finalize();var a=[];return this.elementProperties.forEach((b,c)=>{var d=this._$Ep(c,b);void 0!==d&&(this._$Ev.set(d,c),a.push(d))}),a}static createProperty(a){var b=1<arguments.length&&arguments[1]!==void 0?arguments[1]:ea;if(b.state&&(b.attribute=!1),this.finalize(),this.elementProperties.set(a,b),!b.noAccessor&&!this.prototype.hasOwnProperty(a)){var c="symbol"==typeof a?Symbol():"__"+a,d=this.getPropertyDescriptor(a,c,b);void 0!==d&&Object.defineProperty(this.prototype,a,d)}}static getPropertyDescriptor(a,b,c){return{get(){return this[b]},set(d){var e=this[a];this[b]=d,this.requestUpdate(a,e,c)},configurable:!0,enumerable:!0}}static getPropertyOptions(a){return this.elementProperties.get(a)||ea}static finalize(){if(this.hasOwnProperty("finalized"))return!1;this.finalized=!0;var a=Object.getPrototypeOf(this);if(a.finalize(),void 0!==a.h&&(this.h=[...a.h]),this.elementProperties=new Map(a.elementProperties),this._$Ev=new Map,this.hasOwnProperty("properties")){var b=this.properties,c=[...Object.getOwnPropertyNames(b),...Object.getOwnPropertySymbols(b)];for(var d of c)this.createProperty(d,b[d])}return this.elementStyles=this.finalizeStyles(this.styles),!0}static finalizeStyles(a){var b=[];if(Array.isArray(a)){var c=new Set(a.flat(1/0).reverse());for(var d of c)b.unshift(X(d))}else void 0!==a&&b.push(X(a));return b}static _$Ep(a,b){var c=b.attribute;return!1===c?void 0:"string"==typeof c?c:"string"==typeof a?a.toLowerCase():void 0}u(){var a;this._$E_=new Promise(a=>this.enableUpdating=a),this._$AL=new Map,this._$Eg(),this.requestUpdate(),null===(a=this.constructor.h)||void 0===a||a.forEach(a=>a(this))}addController(a){var b,c;(null!==(b=this._$ES)&&void 0!==b?b:this._$ES=[]).push(a),void 0!==this.renderRoot&&this.isConnected&&(null===(c=a.hostConnected)||void 0===c||c.call(a))}removeController(a){var b;null===(b=this._$ES)||void 0===b||b.splice(this._$ES.indexOf(a)>>>0,1)}_$Eg(){this.constructor.elementProperties.forEach((a,b)=>{this.hasOwnProperty(b)&&(this._$Ei.set(b,this[b]),delete this[b])})}createRenderRoot(){var a,b=null!==(a=this.shadowRoot)&&void 0!==a?a:this.attachShadow(this.constructor.shadowRootOptions);return W(b,this.constructor.elementStyles),b}connectedCallback(){var a;void 0===this.renderRoot&&(this.renderRoot=this.createRenderRoot()),this.enableUpdating(!0),null===(a=this._$ES)||void 0===a||a.forEach(a=>{var b;return null===(b=a.hostConnected)||void 0===b?void 0:b.call(a)})}enableUpdating(a){}disconnectedCallback(){var a;null===(a=this._$ES)||void 0===a||a.forEach(a=>{var b;return null===(b=a.hostDisconnected)||void 0===b?void 0:b.call(a)})}attributeChangedCallback(a,b,c){this._$AK(a,c)}_$EO(a,b){var c,d=2<arguments.length&&arguments[2]!==void 0?arguments[2]:ea,f=this.constructor._$Ep(a,d);if(void 0!==f&&!0===d.reflect){var g=(void 0===(null===(c=d.converter)||void 0===c?void 0:c.toAttribute)?ca:d.converter).toAttribute(b,d.type);this._$El=a,null==g?this.removeAttribute(f):this.setAttribute(f,g),this._$El=null}}_$AK(a,b){var c,d=this.constructor,e=d._$Ev.get(a);if(void 0!==e&&this._$El!==e){var f=d.getPropertyOptions(e),g="function"==typeof f.converter?{fromAttribute:f.converter}:void 0===(null===(c=f.converter)||void 0===c?void 0:c.fromAttribute)?ca:f.converter;this._$El=e,this[e]=g.fromAttribute(b,f.type),this._$El=null}}requestUpdate(a,b,c){var d=!0;void 0!==a&&(((c=c||this.constructor.getPropertyOptions(a)).hasChanged||da)(this[a],b)?(this._$AL.has(a)||this._$AL.set(a,b),!0===c.reflect&&this._$El!==a&&(void 0===this._$EC&&(this._$EC=new Map),this._$EC.set(a,c))):d=!1),!this.isUpdatePending&&d&&(this._$E_=this._$Ej())}_$Ej(){var a=this;return i(function*(){a.isUpdatePending=!0;try{yield a._$E_}catch(a){Promise.reject(a)}var b=a.scheduleUpdate();return null!=b&&(yield b),!a.isUpdatePending})()}scheduleUpdate(){return this.performUpdate()}performUpdate(){var a;if(this.isUpdatePending){this.hasUpdated,this._$Ei&&(this._$Ei.forEach((a,b)=>this[b]=a),this._$Ei=void 0);var b=!1,c=this._$AL;try{b=this.shouldUpdate(c),b?(this.willUpdate(c),null===(a=this._$ES)||void 0===a||a.forEach(a=>{var b;return null===(b=a.hostUpdate)||void 0===b?void 0:b.call(a)}),this.update(c)):this._$Ek()}catch(a){throw b=!1,this._$Ek(),a}b&&this._$AE(c)}}willUpdate(a){}_$AE(a){var b;null===(b=this._$ES)||void 0===b||b.forEach(a=>{var b;return null===(b=a.hostUpdated)||void 0===b?void 0:b.call(a)}),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(a)),this.updated(a)}_$Ek(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$E_}shouldUpdate(a){return!0}update(a){void 0!==this._$EC&&(this._$EC.forEach((a,b)=>this._$EO(b,this[b],a)),this._$EC=void 0),this._$Ek()}updated(a){}firstUpdated(a){}};fa.finalized=!0,fa.elementProperties=new Map,fa.elementStyles=[],fa.shadowRootOptions={mode:"open"},null==ba||ba({ReactiveElement:fa}),(null!==(e=Y.reactiveElementVersions)&&void 0!==e?e:Y.reactiveElementVersions=[]).push("1.6.1");var ga,ha=window,ia=ha.trustedTypes,ja=ia?ia.createPolicy("lit-html",{createHTML:a=>a}):void 0,ka="$lit$",la="lit$".concat((Math.random()+"").slice(9),"$"),ma="?"+la,na="<".concat(ma,">"),oa=document,pa=()=>oa.createComment(""),qa=a=>null===a||"object"!=typeof a&&"function"!=typeof a,h=Array.isArray,c=a=>h(a)||"function"==typeof(null==a?void 0:a[Symbol.iterator]),ra="[ \t\n\f\r]",a=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,f=/-->/g,_=/>/g,m=RegExp(">|".concat(ra,"(?:([^\\s\"'>=/]+)(").concat(ra,"*=").concat(ra,"*(?:[^ \t\n\f\r\"'`<>=]|(\"|')|))|$)"),"g"),p=/'/g,g=/"/g,$=/^(?:script|style|textarea|title)$/i,y=(a=>function(b){for(var c=arguments.length,d=Array(1<c?c-1:0),e=1;e<c;e++)d[e-1]=arguments[e];return{_$litType$:a,strings:b,values:d}})(1),x=Symbol.for("lit-noChange"),T=Symbol.for("lit-nothing"),A=new WeakMap,E=oa.createTreeWalker(oa,129,null,!1),C=(b,e)=>{for(var h,i=b.length-1,j=[],k=2===e?"<svg>":"",l=a,n=0;n<i;n++){for(var o=b[n],q=void 0,s=void 0,t=-1,v=0;v<o.length&&(l.lastIndex=v,s=l.exec(o),null!==s);)v=l.lastIndex,l===a?"!--"===s[1]?l=f:void 0===s[1]?void 0===s[2]?void 0!==s[3]&&(l=m):($.test(s[2])&&(h=RegExp("</"+s[2],"g")),l=m):l=_:l===m?">"===s[0]?(l=null==h?a:h,t=-1):void 0===s[1]?t=-2:(t=l.lastIndex-s[2].length,q=s[1],l=void 0===s[3]?m:"\""===s[3]?g:p):l===g||l===p?l=m:l===f||l===_?l=a:(l=m,h=void 0);var w=l===m&&b[n+1].startsWith("/>")?" ":"";k+=l===a?o+na:0<=t?(j.push(q),o.slice(0,t)+ka+o.slice(t)+la+w):o+la+(-2===t?(j.push(void 0),n):w)}var x=k+(b[i]||"<?>")+(2===e?"</svg>":"");if(!Array.isArray(b)||!b.hasOwnProperty("raw"))throw Error("invalid template strings array");return[void 0===ja?x:ja.createHTML(x),j]};class P{constructor(b,d){var e,{strings:g,_$litType$:j}=b;this.parts=[];var i=0,k=0,l=g.length-1,c=this.parts,[m,a]=C(g,j);if(this.el=P.createElement(m,d),E.currentNode=this.el.content,2===j){var f=this.el.content,n=f.firstChild;n.remove(),f.append(...n.childNodes)}for(;null!==(e=E.nextNode())&&c.length<l;){if(1===e.nodeType){if(e.hasAttributes()){var o=[];for(var p of e.getAttributeNames())if(p.endsWith(ka)||p.startsWith(la)){var q=a[k++];if(o.push(p),void 0!==q){var s=e.getAttribute(q.toLowerCase()+ka).split(la),t=/([.?@])?(.*)/.exec(q);c.push({type:1,index:i,name:t[2],strings:s,ctor:"."===t[1]?R:"?"===t[1]?H:"@"===t[1]?I:M})}else c.push({type:6,index:i})}for(var v of o)e.removeAttribute(v)}if($.test(e.tagName)){var w=e.textContent.split(la),x=w.length-1;if(0<x){e.textContent=ia?ia.emptyScript:"";for(var y=0;y<x;y++)e.append(w[y],pa()),E.nextNode(),c.push({type:2,index:++i});e.append(w[x],pa())}}}else if(8===e.nodeType)if(e.data===ma)c.push({type:2,index:i});else for(var z=-1;-1!==(z=e.data.indexOf(la,z+1));)c.push({type:7,index:i}),z+=la.length-1;i++}}static createElement(a,b){var c=oa.createElement("template");return c.innerHTML=a,c}}class V{constructor(a,b){this._$AV=[],this._$AN=void 0,this._$AD=a,this._$AM=b}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(a){var b,{el:{content:e},parts:c}=this._$AD,f=(null!==(b=null==a?void 0:a.creationScope)&&void 0!==b?b:oa).importNode(e,!0);E.currentNode=f;for(var g=E.nextNode(),j=0,k=0,m=c[0];void 0!==m;){if(j===m.index){var o=void 0;2===m.type?o=new S(g,g.nextSibling,this,a):1===m.type?o=new m.ctor(g,m.name,m.strings,this,a):6===m.type&&(o=new L(g,this,a)),this._$AV.push(o),m=c[++k]}j!==(null==m?void 0:m.index)&&(g=E.nextNode(),j++)}return E.currentNode=oa,f}v(a){var b=0;for(var c of this._$AV)void 0!==c&&(void 0===c.strings?c._$AI(a[b]):(c._$AI(a,c,b),b+=c.strings.length-2)),b++}}class S{constructor(a,b,c,d){var e;this.type=2,this._$AH=T,this._$AN=void 0,this._$AA=a,this._$AB=b,this._$AM=c,this.options=d,this._$Cp=null===(e=null==d?void 0:d.isConnected)||void 0===e||e}get _$AU(){var a,b;return null!==(b=null===(a=this._$AM)||void 0===a?void 0:a._$AU)&&void 0!==b?b:this._$Cp}get parentNode(){var a=this._$AA.parentNode,b=this._$AM;return void 0!==b&&11===(null==a?void 0:a.nodeType)&&(a=b.parentNode),a}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(a){var b=1<arguments.length&&arguments[1]!==void 0?arguments[1]:this;a=F(this,a,b),qa(a)?a===T||null==a||""===a?(this._$AH!==T&&this._$AR(),this._$AH=T):a!==this._$AH&&a!==x&&this._(a):void 0===a._$litType$?void 0===a.nodeType?c(a)?this.T(a):this._(a):this.$(a):this.g(a)}k(a){return this._$AA.parentNode.insertBefore(a,this._$AB)}$(a){this._$AH!==a&&(this._$AR(),this._$AH=this.k(a))}_(a){this._$AH!==T&&qa(this._$AH)?this._$AA.nextSibling.data=a:this.$(oa.createTextNode(a)),this._$AH=a}g(a){var b,{values:c,_$litType$:d}=a,e="number"==typeof d?this._$AC(a):(void 0===d.el&&(d.el=P.createElement(d.h,this.options)),d);if((null===(b=this._$AH)||void 0===b?void 0:b._$AD)===e)this._$AH.v(c);else{var f=new V(e,this),g=f.u(this.options);f.v(c),this.$(g),this._$AH=f}}_$AC(a){var b=A.get(a.strings);return void 0===b&&A.set(a.strings,b=new P(a)),b}T(a){h(this._$AH)||(this._$AH=[],this._$AR());var b,c=this._$AH,d=0;for(var f of a)d===c.length?c.push(b=new S(this.k(pa()),this.k(pa()),this,this.options)):b=c[d],b._$AI(f),d++;d<c.length&&(this._$AR(b&&b._$AB.nextSibling,d),c.length=d)}_$AR(){var a,b=0<arguments.length&&arguments[0]!==void 0?arguments[0]:this._$AA.nextSibling,c=1<arguments.length?arguments[1]:void 0;for(null===(a=this._$AP)||void 0===a||a.call(this,!1,!0,c);b&&b!==this._$AB;){var d=b.nextSibling;b.remove(),b=d}}setConnected(a){var b;void 0===this._$AM&&(this._$Cp=a,null===(b=this._$AP)||void 0===b||b.call(this,a))}}class M{constructor(a,b,c,d,e){this.type=1,this._$AH=T,this._$AN=void 0,this.element=a,this.name=b,this._$AM=d,this.options=e,2<c.length||""!==c[0]||""!==c[1]?(this._$AH=Array(c.length-1).fill(new String),this.strings=c):this._$AH=T}get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}_$AI(a){var b=1<arguments.length&&arguments[1]!==void 0?arguments[1]:this,c=2<arguments.length?arguments[2]:void 0,d=3<arguments.length?arguments[3]:void 0,e=this.strings,f=!1;if(void 0===e)a=F(this,a,b,0),f=!qa(a)||a!==this._$AH&&a!==x,f&&(this._$AH=a);else{var g,h,i=a;for(a=e[0],g=0;g<e.length-1;g++)h=F(this,i[c+g],b,g),h===x&&(h=this._$AH[g]),f||(f=!qa(h)||h!==this._$AH[g]),h===T?a=T:a!==T&&(a+=(null==h?"":h)+e[g+1]),this._$AH[g]=h}f&&!d&&this.j(a)}j(a){a===T?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,null==a?"":a)}}class R extends M{constructor(){super(...arguments),this.type=3}j(a){this.element[this.name]=a===T?void 0:a}}var k=ia?ia.emptyScript:"";class H extends M{constructor(){super(...arguments),this.type=4}j(a){a&&a!==T?this.element.setAttribute(this.name,k):this.element.removeAttribute(this.name)}}class I extends M{constructor(a,b,c,d,e){super(a,b,c,d,e),this.type=5}_$AI(a){var b,c=1<arguments.length&&arguments[1]!==void 0?arguments[1]:this;if((a=null!==(b=F(this,a,c,0))&&void 0!==b?b:T)!==x){var d=this._$AH,e=a===T&&d!==T||a.capture!==d.capture||a.once!==d.once||a.passive!==d.passive,f=a!==T&&(d===T||e);e&&this.element.removeEventListener(this.name,this,d),f&&this.element.addEventListener(this.name,this,a),this._$AH=a}}handleEvent(a){var b,c;"function"==typeof this._$AH?this._$AH.call(null!==(c=null===(b=this.options)||void 0===b?void 0:b.host)&&void 0!==c?c:this.element,a):this._$AH.handleEvent(a)}}class L{constructor(a,b,c){this.element=a,this.type=6,this._$AN=void 0,this._$AM=b,this.options=c}get _$AU(){return this._$AM._$AU}_$AI(a){F(this,a)}}var z=ha.litHtmlPolyfillSupport;null==z||z(P,S),(null!==(ga=ha.litHtmlVersions)&&void 0!==ga?ga:ha.litHtmlVersions=[]).push("2.7.4");var j,sa,ta=(a,b,c)=>{var d,f,g=null!==(d=null==c?void 0:c.renderBefore)&&void 0!==d?d:b,h=g._$litPart$;if(void 0===h){var i=null!==(f=null==c?void 0:c.renderBefore)&&void 0!==f?f:null;g._$litPart$=h=new S(b.insertBefore(pa(),i),i,void 0,null==c?{}:c)}return h._$AI(a),h};class B extends fa{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){var a,b,c=super.createRenderRoot();return null!==(a=(b=this.renderOptions).renderBefore)&&void 0!==a||(b.renderBefore=c.firstChild),c}update(a){var b=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(a),this._$Do=ta(b,this.renderRoot,this.renderOptions)}connectedCallback(){var a;super.connectedCallback(),null===(a=this._$Do)||void 0===a||a.setConnected(!0)}disconnectedCallback(){var a;super.disconnectedCallback(),null===(a=this._$Do)||void 0===a||a.setConnected(!1)}render(){return x}}B.finalized=!0,B._$litElement$=!0,null===(j=globalThis.litElementHydrateSupport)||void 0===j||j.call(globalThis,{LitElement:B});var ua=globalThis.litElementPolyfillSupport;null==ua||ua({LitElement:B}),(null!==(sa=globalThis.litElementVersions)&&void 0!==sa?sa:globalThis.litElementVersions=[]).push("3.3.2");var n=function i$1(a){for(var b=arguments.length,c=Array(1<b?b-1:0),d=1;d<b;d++)c[d-1]=arguments[d];var e=1===a.length?a[0]:c.reduce((b,c,d)=>b+(a=>{if(!0===a._$cssResult$)return a.cssText;if("number"==typeof a)return a;throw Error("Value passed to 'css' function must be a 'css' function result: "+a+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(c)+a[d+1],a[0]);return new Q(e,a,N)}(q||(q=b(["\n  :host {\n    background: var(--ha-card-background, var(--card-background-color, white));\n    border-radius: var(--ha-card-border-radius, 12px);\n    border-width: var(--ha-card-border-width,4px);\n    box-shadow: var(\n      --ha-card-box-shadow\n    );\n    color: var(--primary-text-color);\n    display: block;\n    transition: all 0.3s ease-out 0s;\n    position: relative;\n    padding-top: 25px;\n  }\n\n  .section{\n    padding-bottom:10px;\n  }\n\n  .sensor-monitor-title{\n    font-size: 1.5rem;\n    font-weight: 500;\n    padding-left: 15px;\n    padding-bottom: 15px;\n    margin: 0;\n  }\n\n  .sensor-monitor-entity-img {\n    text-align:right;\n    width:10%;\n    float:left;\n  }\n  .sensor-monitor-container {\n    display: grid;\n    grid-template-columns: 10% repeat(6, 1fr) 5%;\n    padding: 5px;\n  }\n\n  .sensor-monitor-container-values {\n    display: grid;\n    grid-template-columns:12% repeat(6, 1fr) 2% ;\n    padding: 5px;\n  }\n\n  .sensor-monitor-container-marker {\n    display: grid;\n    grid-template-columns: 10% repeat(6, 1fr) 5%;\n    padding: 10px;\n    grid-template-rows:15px;\n    line-height: 15px;\n    position: relative;\n  }\n\n  .sensor-monitor-container-marker .marker {\n    text-align: center;\n    justify-self: center;\n    width: 40px;\n    height:20px;\n    padding-top:5px;\n    border-radius: 5px;\n    position: absolute;\n    z-index: 1;\n  }\n\n  .sensor-monitor-container-marker .marker-state {\n    width: 60px;\n    position: absolute;\n    z-index: 1;\n  }\n\n  .sensor-monitor-container-marker .triangle {\n    width: 0;\n    height: 0;\n    border-left: 10px solid transparent;\n    border-right: 10px solid transparent;\n    position: absolute;\n    bottom: 0px;\n    transform: translateX(-50%);\n  }\n\n  .grid-item {\n    padding-top: 150%;\n    padding-bottom: 20%;\n    padding: 0;\n  }\n\n  .grid-item-text-box {\n    font-size: 0.8em;\n    text-align: center;\n    font-weight: 700;\n  }\n\n  .item-row {\n    grid-row: 1;\n  }\n\n  .cursor{\n    text-align: center;\n    justify-self: center;\n    font-size:20px;\n    font-weight: 900;\n    color: black;\n    position: absolute;\n    z-index: 1;\n  }\n  .cursor-text{\n    width: 150px;\n    height: 22px;\n    padding-left: 3px;\n    padding-right: 3px;\n    padding-top:2px;\n    font-size: 12px;\n    font-weight: 700;\n    text-align: right;\n    color: black;\n    justify-self: right;\n    position: absolute;\n    z-index: 1;\n  }\n"])));class va{static generateTitle(a){var c=a.title===void 0?y(s||(s=b([""]))):y(r||(r=b(["\n        <h1 class=\"sensor-monitor-title\">","</h1>\n      "])),a.title);return y(t||(t=b(["\n      ","\n    "])),c)}static generateBody(a){return y(u||(u=b(["\n    <!-- ##### "," section ##### -->    \n    <div class=\"section\" @click=",">   \n      <div class=\"sensor-monitor-container-marker\" >\n        <div class=\"marker\" style=\"background-color: "," ;color: black;left: ","%;\">","</div>\n        <div class=\"marker-state\" style=\"padding-",":40px;text-align:",";background-color:transparent ;",": ","%;\">","</div>\n        <div class=\"triangle\" style=\"border-top: 10px solid "," ;left: ","%;\"></div>\n      </div>\n      <div class=\"sensor-monitor-entity-img\"><img style=\"width:32px;height:32px\" src=\"","\"></div>\n      <div class=\"sensor-monitor-container\">\n        <div style=\"background-color: transparent; grid-column: 1 ; border: 0px; box-shadow:none\" class=\"grid-item item-row\"> <div style=\"font-size: 0.8em;color:lightgrey;text-align:left;margin:3px 2px 0 0 \">","</div></div>\n        <div style=\"background-color: #e17055; grid-column: 2 ; border-radius: 5px 0px 0px 5px\" class=\"grid-item item-row\"> </div>\n        <div style=\"background-color: #fdcb6e; grid-column: 3 ;\" class=\"grid-item item-row\"></div>\n        <div style=\"background-color: #00b894; grid-column: 4 ;\" class=\"grid-item item-row\"></div>  \n        <div style=\"background-color: #00b894; grid-column: 5 ;\" class=\"grid-item item-row\"></div>  \n        <div style=\"background-color: #fdcb6e; grid-column: 6 ;\" class=\"grid-item item-row\"></div>\n        <div style=\"background-color: #e17055; grid-column: 7 ; border-radius: 0px 5px 5px 0px;\" class=\"grid-item item-row\"></div>\n      </div>\n      <div class=\"sensor-monitor-container-values\">\n        <div style=\"background-color: transparent; grid-column: 2 ; border-radius: 5px 0px 0px 5px\" class=\"grid-item item-row\"> <div style=\"font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 \">","</div></div>\n        <div style=\"background-color: transparent; grid-column: 3 ;\" class=\"grid-item item-row\"><div style=\"font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 \">","</div></div>\n        <div style=\"background-color: transparent; grid-column: 4 ;\" class=\"grid-item item-row\"><div style=\"font-size: 0.8em;color:#00b894;text-align:right;margin:-5px 2px 0 0 \">","</div></div>  \n        <div style=\"background-color: transparent; grid-column: 5 ;\" class=\"grid-item item-row\"><div style=\"font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 \">","</div></div>  \n        <div style=\"background-color: transparent; grid-column: 6 ;\" class=\"grid-item item-row\"><div style=\"font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 \">","</div></div>\n        <div style=\"background-color: transparent; grid-column: 7 ; border-radius: 0px 5px 5px 0px;\" class=\"grid-item item-row\"></div>\n      </div> \n    </div> \n    <div style=\"position: relative;top:-25px;margin-bottom:-25px;text-align:left;left:15px;\">","<br/><small style=\"position: relative;top:-5px;font-size:9px;color:lightgrey\">","</small></div>\n\n    "])),a.name,()=>va._moreinfo(a.entity),a.color,a.pct-5,a.value,a.side_align,a.side_align,a.side_align,a.pct_state_step,a.state,a.color,a.pct-1,a.image,a.unit,a.setpoint_class[0],a.setpoint_class[1],a.setpoint_class[2],a.setpoint_class[3],a.setpoint_class[4],a.title,a.last_updated)}static generateCompactBody(a){return y(v||(v=b(["\n    <!-- ##### "," section ##### -->    \n    <div class=\"section-compact\"  @click=",">   \n      <div class=\"sensor-monitor-entity-img\"><img style=\"width:32px;height:32px\" src=\"","\"></div>\n      <div class=\"sensor-monitor-container\">\n        <div style=\"background-color: transparent; grid-column: 1 ; border: 0px; box-shadow:none\" class=\"grid-item item-row\"> <div style=\"font-size: 0.8em;color:lightgrey;text-align:left;margin:3px 2px 0 0 \">","</div></div>\n        <div style=\"background-color: #e17055; grid-column: 2 ; border-radius: 5px 0px 0px 5px\" class=\"grid-item item-row\"> </div>\n        <div style=\"background-color: #fdcb6e; grid-column: 3 ;\" class=\"grid-item item-row\"></div>\n        <div style=\"background-color: #00b894; grid-column: 4 ;\" class=\"grid-item item-row\"></div>  \n        <div class=\"cursor-text\" style=\"border-",": 5px solid black; text-align:",";background-color:transparent ;",": ","%;\">"," "," ","</div>\n        <div style=\"background-color: #00b894; grid-column: 5 ;\" class=\"grid-item item-row\"></div>  \n        <div style=\"background-color: #fdcb6e; grid-column: 6 ;\" class=\"grid-item item-row\"></div>\n        <div style=\"background-color: #e17055; grid-column: 7 ; border-radius: 0px 5px 5px 0px;\" class=\"grid-item item-row\"></div>\n      </div>\n      <div class=\"sensor-monitor-container-values\">\n        <div style=\"background-color: transparent; grid-column: 2 ; border-radius: 5px 0px 0px 5px\" class=\"grid-item item-row\"> <div style=\"font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 \">","</div></div>\n        <div style=\"background-color: transparent; grid-column: 3 ;\" class=\"grid-item item-row\"><div style=\"font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 \">","</div></div>\n        <div style=\"background-color: transparent; grid-column: 4 ;\" class=\"grid-item item-row\"><div style=\"font-size: 0.8em;color:#00b894;text-align:right;margin:-5px 2px 0 0 \">","</div></div>  \n        <div style=\"background-color: transparent; grid-column: 5 ;\" class=\"grid-item item-row\"><div style=\"font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 \">","</div></div>  \n        <div style=\"background-color: transparent; grid-column: 6 ;\" class=\"grid-item item-row\"><div style=\"font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 \">","</div></div>\n        <div style=\"background-color: transparent; grid-column: 7 ; border-radius: 0px 5px 5px 0px;\" class=\"grid-item item-row\"></div>\n      </div> \n    </div> \n    <div style=\"position: relative;margin-top:-30px;text-align:left;left:-30px;font-size:9px;padding-bottom: 5px;\">","</div>\n\n    "])),a.name,()=>va._moreinfo(a.entity),a.image,a.unit,a.side_align,a.side_align,a.side_align,a.pct_cursor,a.value,a.separator,a.state,a.setpoint_class[0],a.setpoint_class[1],a.setpoint_class[2],a.setpoint_class[3],a.setpoint_class[4],a.title)}static _moreinfo(a){var b=new Event("hass-more-info",{bubbles:!0,cancelable:!1,composed:!0});b.detail={entityId:a},document.querySelector("home-assistant").dispatchEvent(b)}}var wa={en:{state:{1:"Too Low",2:"Acceptable Low",3:"Ideal",4:"Ideal",5:"Acceptable High",6:"Too High"},time:{seconds:"just now",minutes:"{minutes} minute{plural} ago",hours:"{hours} hour{plural} ago",days:"{days} day{plural} ago"}},fr:{state:{1:"Trop bas",2:"Acceptable bas",3:"Id\xE9al",4:"Id\xE9al",5:"Acceptable \xE9lev\xE9",6:"Trop \xE9lev\xE9"},time:{seconds:"il y a {seconds} seconde{plural}",minutes:"il y a {minutes} minute{plural}",hours:"il y a {hours} heure{plural}",days:"il y a {days} jour{plural}"}},es:{state:{1:"Demasiado bajo",2:"Aceptable bajo",3:"Perfecto",4:"Perfecto",5:"Aceptable alto",6:"Demasiado alto"},time:{seconds:"justo ahora",minutes:"hace {minutes} minuto{plural}",hours:"hace {hours} hora{plural}",days:"hace {days} d\xEDa{plural}"}}},xa=[{id:"sensor_1"},{id:"sensor_2"},{id:"sensor_3"},{id:"sensor_4"},{id:"sensor_5"},{id:"sensor_6"},{id:"sensor_7"},{id:"sensor_8"},{id:"sensor_9"},{id:"sensor_10"},{id:"sensor_11"},{id:"sensor_12"},{id:"sensor_13"},{id:"sensor_14"},{id:"sensor_15"}],ya={en:{sensor:{sensor_1:"Sensor 1",sensor_2:"Sensor 2",sensor_3:"Sensor 3",sensor_4:"Sensor 4",sensor_5:"Sensor 5",sensor_6:"Sensor 6",sensor_7:"Sensor 7",sensor_8:"Sensor 8",sensor_9:"Sensor 9",sensor_10:"Sensor 10",sensor_11:"Sensor 11",sensor_12:"Sensor 12",sensor_13:"Sensor 13",sensor_14:"Sensor 14",sensor_15:"Sensor 15"}}};console.info("%c SENSOR-MONITORING-CARD %c ".concat("v1.0.0"," "),"color: white; background: green; font-weight: 700;","color: green; background: white; font-weight: 700;");class za extends G(B){static get properties(){return{hass:{},config:{}}}static get styles(){return[n]}render(){this.config=this.getConfig();for(var a=[],c=0;c<=xa.length;c++)void 0!==this.config.sensor[c]&&(this.config.compact?a.push(va.generateCompactBody(this.config.sensor[c])):a.push(va.generateBody(this.config.sensor[c])));return y(w||(w=b(["\n    <div id=\"sensor-monitor-card\">\n      ","\n      ","\n    </div>"])),va.generateTitle(this.config),a)}getConfig(){var a,b,c,d,e,f,g;this.config.sensor=[],this.config.title=null!==(a=this.config.title)&&void 0!==a?a:"",this.config.compact=!(null===(b=this.config.compact)||void 0===b)&&b,this.config.show_names=null===(c=this.config.show_names)||void 0===c||c,this.config.show_labels=null===(d=this.config.show_labels)||void 0===d||d,this.config.show_last_updated=!(null===(e=this.config.show_last_updated)||void 0===e)&&e,this.config.language=null!==(f=this.config.language)&&void 0!==f?f:"en",this.config.override=!(null===(g=this.config.override)||void 0===g)&&g;for(var h,i=0;i<=xa.length;i++)if(h=xa[i],h){var j=h.id;this.config[j]&&(this.config.sensor[i]={},this.config.sensor[i].entity=this.config[j],this.config.sensor[i].name=this.config["".concat(j,"_name")]||ya[this.config.language].sensor[j]||"Name?",this.config.sensor[i].image=this.config["".concat(j,"_image")]||h.image||"https://upload.wikimedia.org/wikipedia/commons/e/e4/Infobox_info_icon.svg",this.config.sensor[i].unit=this.config["".concat(j,"_unit")]||h.unit||"Unit?",this.config.sensor[i].setpoint=this.config["".concat(j,"_setpoint")]||parseFloat(h.setpoint)||100,this.config.sensor[i].step=this.config["".concat(j,"_step")]||parseFloat(h.step)||10,this.config.sensor[i].override=this.config["".concat(j,"_override")]||parseFloat(h.override)||76.5,this.config.sensor[i]=this.calculateData(this.config.sensor[i]))}return this.config}calculateData(a){var b=Math.min,c=Math.max,d=a;d.title=this.config.show_names?a.name:"",d.value=parseFloat(this.hass.states[a.entity].state),this.config.override&&(d.value=parseFloat(a.override));var e=this.countDecimals(parseFloat(a.setpoint));return d.value&&(d.value=10>d.value?d.value.toFixed(2):100>d.value?d.value.toFixed(1):d.value.toFixed(0)),d.last_updated=this.config.show_last_updated?this.timeFromNow(this.hass.states[a.entity].last_updated,this.config.language):"",d.setpoint_class=[(a.setpoint-2*a.step).toFixed(e),(a.setpoint-a.step).toFixed(e),a.setpoint.toFixed(e),(a.setpoint+a.step).toFixed(e),(a.setpoint+2*a.step).toFixed(e)],d.separator=this.config.show_labels?"-":"",d.color="transparent",+d.value<+d.setpoint_class[0]?(d.state=this.config.show_labels?wa[this.config.language].state[1]:"",d.color="#e17055"):+d.value>=+d.setpoint_class[0]&&+d.value<+d.setpoint_class[1]?(d.state=this.config.show_labels?wa[this.config.language].state[2]:"",d.color="#fdcb6e"):+d.value>=+d.setpoint_class[1]&&+d.value<+d.setpoint_class[2]?(d.state=this.config.show_labels?wa[this.config.language].state[3]:"",d.color="#00b894"):+d.value>=+d.setpoint_class[2]&&+d.value<+d.setpoint_class[3]?(d.state=this.config.show_labels?wa[this.config.language].state[4]:"",d.color="#00b894"):+d.value>=+d.setpoint_class[3]&&+d.value<+d.setpoint_class[4]?(d.state=this.config.show_labels?wa[this.config.language].state[5]:"",d.color="#fdcb6e"):+d.value>=+d.setpoint_class[4]&&(d.state=this.config.show_labels?wa[this.config.language].state[6]:"",d.color="#e17055"),d.pct=c(0,b(95,100*(.73*(c(0,d.value-(a.setpoint-3*a.step))/(6*a.step)))+22)).toFixed(0),d.side_align=d.value>a.setpoint?"right":"left",d.pct_cursor=d.value>a.setpoint?100-parseFloat(d.pct):parseFloat(d.pct)-2,d.pct_state_step=d.value>a.setpoint?100-parseFloat(d.pct):parseFloat(d.pct),d}countDecimals(a){return D(a)===a?0:a.toString().split(".")[1].length||0}timeFromNow(a,b){var c=new Date(a),d=Date.now()-c.getTime(),e=(a,c)=>{var d=1==c?"":"s",e=wa[b].time[a];return e=e.replace("{"+a+"}",c),e=e.replace("{plural}",d),e};if(d<60000){var f=D(d/1e3);return e("seconds",f)}if(3600000>d){var g=D(d/60000);return e("minutes",g)}if(86400000>d){var h=D(d/3600000);return e("hours",h)}var i=D(d/86400000);return e("days",i)}setConfig(a){this.config=d({},a)}}customElements.define("sensor-monitor-card",za),window.customCards=window.customCards||[],window.customCards.push({type:"sensor-monitor-card",name:"Sensor Monitor Card",preview:!0,description:"A custom Sensor Monitor Card",documentationURL:"https://github.com/wilsto/sensor-monitor-card"})})})();
+var SensorMonitorCard=function(e){"use strict";const s=globalThis,o=s.ShadowRoot&&(void 0===s.ShadyCSS||s.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,r=Symbol(),l=new WeakMap;let u=class n{constructor(e,s,o){if(this._$cssResult$=true,o!==r)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=e,this.t=s}get styleSheet(){let e=this.o;const s=this.t;if(o&&void 0===e){const o=void 0!==s&&1===s.length;o&&(e=l.get(s)),void 0===e&&((this.o=e=new CSSStyleSheet).replaceSync(this.cssText),o&&l.set(s,e))}return e}toString(){return this.cssText}};const r$2=e=>new u("string"==typeof e?e:e+"",void 0,r),i$3=(e,...s)=>{const o=1===e.length?e[0]:s.reduce((s,o,r)=>s+(e=>{if(true===e._$cssResult$)return e.cssText;if("number"==typeof e)return e;throw Error("Value passed to 'css' function must be a 'css' function result: "+e+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(o)+e[r+1],e[0]);return new u(o,e,r)},S$1=(e,r)=>{if(o)e.adoptedStyleSheets=r.map(e=>e instanceof CSSStyleSheet?e:e.styleSheet);else for(const o of r){const r=document.createElement("style"),l=s.litNonce;void 0!==l&&r.setAttribute("nonce",l),r.textContent=o.cssText,e.appendChild(r)}},p=o?e=>e:e=>e instanceof CSSStyleSheet?(e=>{let s="";for(const o of e.cssRules)s+=o.cssText;return r$2(s)})(e):e;const{is:h,defineProperty:m,getOwnPropertyDescriptor:g,getOwnPropertyNames:_,getOwnPropertySymbols:v,getPrototypeOf:f}=Object,$=globalThis,b=$.trustedTypes,w=b?b.emptyScript:"",A=$.reactiveElementPolyfillSupport,d$1=(e,s)=>e,C={toAttribute(e,s){switch(s){case Boolean:e=e?w:null;break;case Object:case Array:e=null==e?e:JSON.stringify(e)}return e},fromAttribute(e,s){let o=e;switch(s){case Boolean:o=null!==e;break;case Number:o=null===e?null:Number(e);break;case Object:case Array:try{o=JSON.parse(e)}catch(e){o=null}}return o}},f$1=(e,s)=>!h(e,s),E={attribute:true,type:String,converter:C,reflect:false,useDefault:false,hasChanged:f$1};Symbol.metadata??=Symbol("metadata"),$.litPropertyMetadata??=new WeakMap;let T=class y extends HTMLElement{static addInitializer(e){this._$Ei(),(this.l??=[]).push(e)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(e,s=E){if(s.state&&(s.attribute=false),this._$Ei(),this.prototype.hasOwnProperty(e)&&((s=Object.create(s)).wrapped=true),this.elementProperties.set(e,s),!s.noAccessor){const o=Symbol(),r=this.getPropertyDescriptor(e,o,s);void 0!==r&&m(this.prototype,e,r)}}static getPropertyDescriptor(e,s,o){const{get:r,set:l}=g(this.prototype,e)??{get(){return this[s]},set(e){this[s]=e}};return{get:r,set(s){const u=r?.call(this);l?.call(this,s),this.requestUpdate(e,u,o)},configurable:true,enumerable:true}}static getPropertyOptions(e){return this.elementProperties.get(e)??E}static _$Ei(){if(this.hasOwnProperty(d$1("elementProperties")))return;const e=f(this);e.finalize(),void 0!==e.l&&(this.l=[...e.l]),this.elementProperties=new Map(e.elementProperties)}static finalize(){if(this.hasOwnProperty(d$1("finalized")))return;if(this.finalized=true,this._$Ei(),this.hasOwnProperty(d$1("properties"))){const e=this.properties,s=[..._(e),...v(e)];for(const o of s)this.createProperty(o,e[o])}const e=this[Symbol.metadata];if(null!==e){const s=litPropertyMetadata.get(e);if(void 0!==s)for(const[e,o]of s)this.elementProperties.set(e,o)}this._$Eh=new Map;for(const[e,s]of this.elementProperties){const o=this._$Eu(e,s);void 0!==o&&this._$Eh.set(o,e)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(e){const s=[];if(Array.isArray(e)){const o=new Set(e.flat(1/0).reverse());for(const e of o)s.unshift(p(e))}else void 0!==e&&s.push(p(e));return s}static _$Eu(e,s){const o=s.attribute;return false===o?void 0:"string"==typeof o?o:"string"==typeof e?e.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=false,this.hasUpdated=false,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise(e=>this.enableUpdating=e),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach(e=>e(this))}addController(e){(this._$EO??=new Set).add(e),void 0!==this.renderRoot&&this.isConnected&&e.hostConnected?.()}removeController(e){this._$EO?.delete(e)}_$E_(){const e=new Map,s=this.constructor.elementProperties;for(const o of s.keys())this.hasOwnProperty(o)&&(e.set(o,this[o]),delete this[o]);e.size>0&&(this._$Ep=e)}createRenderRoot(){const e=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return S$1(e,this.constructor.elementStyles),e}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(true),this._$EO?.forEach(e=>e.hostConnected?.())}enableUpdating(e){}disconnectedCallback(){this._$EO?.forEach(e=>e.hostDisconnected?.())}attributeChangedCallback(e,s,o){this._$AK(e,o)}_$ET(e,s){const o=this.constructor.elementProperties.get(e),r=this.constructor._$Eu(e,o);if(void 0!==r&&true===o.reflect){const l=(void 0!==o.converter?.toAttribute?o.converter:C).toAttribute(s,o.type);this._$Em=e,null==l?this.removeAttribute(r):this.setAttribute(r,l),this._$Em=null}}_$AK(e,s){const o=this.constructor,r=o._$Eh.get(e);if(void 0!==r&&this._$Em!==r){const e=o.getPropertyOptions(r),l="function"==typeof e.converter?{fromAttribute:e.converter}:void 0!==e.converter?.fromAttribute?e.converter:C;this._$Em=r;const u=l.fromAttribute(s,e.type);this[r]=u??this._$Ej?.get(r)??u,this._$Em=null}}requestUpdate(e,s,o,r=false,l){if(void 0!==e){const u=this.constructor;if(false===r&&(l=this[e]),o??=u.getPropertyOptions(e),!((o.hasChanged??f$1)(l,s)||o.useDefault&&o.reflect&&l===this._$Ej?.get(e)&&!this.hasAttribute(u._$Eu(e,o))))return;this.C(e,s,o)}false===this.isUpdatePending&&(this._$ES=this._$EP())}C(e,s,{useDefault:o,reflect:r,wrapped:l},u){o&&!(this._$Ej??=new Map).has(e)&&(this._$Ej.set(e,u??s??this[e]),true!==l||void 0!==u)||(this._$AL.has(e)||(this.hasUpdated||o||(s=void 0),this._$AL.set(e,s)),true===r&&this._$Em!==e&&(this._$Eq??=new Set).add(e))}async _$EP(){this.isUpdatePending=true;try{await this._$ES}catch(e){Promise.reject(e)}const e=this.scheduleUpdate();return null!=e&&await e,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(const[e,s]of this._$Ep)this[e]=s;this._$Ep=void 0}const e=this.constructor.elementProperties;if(e.size>0)for(const[s,o]of e){const{wrapped:e}=o,r=this[s];true!==e||this._$AL.has(s)||void 0===r||this.C(s,void 0,o,r)}}let e=false;const s=this._$AL;try{e=this.shouldUpdate(s),e?(this.willUpdate(s),this._$EO?.forEach(e=>e.hostUpdate?.()),this.update(s)):this._$EM()}catch(s){throw e=false,this._$EM(),s}e&&this._$AE(s)}willUpdate(e){}_$AE(e){this._$EO?.forEach(e=>e.hostUpdated?.()),this.hasUpdated||(this.hasUpdated=true,this.firstUpdated(e)),this.updated(e)}_$EM(){this._$AL=new Map,this.isUpdatePending=false}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(e){return true}update(e){this._$Eq&&=this._$Eq.forEach(e=>this._$ET(e,this[e])),this._$EM()}updated(e){}firstUpdated(e){}};T.elementStyles=[],T.shadowRootOptions={mode:"open"},T[d$1("elementProperties")]=new Map,T[d$1("finalized")]=new Map,A?.({ReactiveElement:T}),($.reactiveElementVersions??=[]).push("2.1.2");const P=globalThis,i$1=e=>e,O=P.trustedTypes,U=O?O.createPolicy("lit-html",{createHTML:e=>e}):void 0,F="$lit$",j=`lit$${Math.random().toFixed(9).slice(2)}$`,B="?"+j,W=`<${B}>`,q=document,c=()=>q.createComment(""),a=e=>null===e||"object"!=typeof e&&"function"!=typeof e,G=Array.isArray,d=e=>G(e)||"function"==typeof e?.[Symbol.iterator],K="[ \t\n\f\r]",J=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,X=/-->/g,Y=/>/g,Q=RegExp(`>|${K}(?:([^\\s"'>=/]+)(${K}*=${K}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),tt=/'/g,et=/"/g,it=/^(?:script|style|textarea|title)$/i,x=e=>(s,...o)=>({_$litType$:e,strings:s,values:o}),st=x(1),ot=Symbol.for("lit-noChange"),rt=Symbol.for("lit-nothing"),at=new WeakMap,nt=q.createTreeWalker(q,129);function V(e,s){if(!G(e)||!e.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==U?U.createHTML(s):s}const N=(e,s)=>{const o=e.length-1,r=[];let l,u=2===s?"<svg>":3===s?"<math>":"",p=J;for(let s=0;s<o;s++){const o=e[s];let h,m,g=-1,_=0;for(;_<o.length&&(p.lastIndex=_,m=p.exec(o),null!==m);)_=p.lastIndex,p===J?"!--"===m[1]?p=X:void 0!==m[1]?p=Y:void 0!==m[2]?(it.test(m[2])&&(l=RegExp("</"+m[2],"g")),p=Q):void 0!==m[3]&&(p=Q):p===Q?">"===m[0]?(p=l??J,g=-1):void 0===m[1]?g=-2:(g=p.lastIndex-m[2].length,h=m[1],p=void 0===m[3]?Q:'"'===m[3]?et:tt):p===et||p===tt?p=Q:p===X||p===Y?p=J:(p=Q,l=void 0);const v=p===Q&&e[s+1].startsWith("/>")?" ":"";u+=p===J?o+W:g>=0?(r.push(h),o.slice(0,g)+F+o.slice(g)+j+v):o+j+(-2===g?s:v)}return[V(e,u+(e[o]||"<?>")+(2===s?"</svg>":3===s?"</math>":"")),r]};class S{constructor({strings:e,_$litType$:s},o){let r;this.parts=[];let l=0,u=0;const p=e.length-1,h=this.parts,[m,g]=N(e,s);if(this.el=S.createElement(m,o),nt.currentNode=this.el.content,2===s||3===s){const e=this.el.content.firstChild;e.replaceWith(...e.childNodes)}for(;null!==(r=nt.nextNode())&&h.length<p;){if(1===r.nodeType){if(r.hasAttributes())for(const e of r.getAttributeNames())if(e.endsWith(F)){const s=g[u++],o=r.getAttribute(e).split(j),p=/([.?@])?(.*)/.exec(s);h.push({type:1,index:l,name:p[2],strings:o,ctor:"."===p[1]?I:"?"===p[1]?L:"@"===p[1]?z:H}),r.removeAttribute(e)}else e.startsWith(j)&&(h.push({type:6,index:l}),r.removeAttribute(e));if(it.test(r.tagName)){const e=r.textContent.split(j),s=e.length-1;if(s>0){r.textContent=O?O.emptyScript:"";for(let o=0;o<s;o++)r.append(e[o],c()),nt.nextNode(),h.push({type:2,index:++l});r.append(e[s],c())}}}else if(8===r.nodeType)if(r.data===B)h.push({type:2,index:l});else{let e=-1;for(;-1!==(e=r.data.indexOf(j,e+1));)h.push({type:7,index:l}),e+=j.length-1}l++}}static createElement(e,s){const o=q.createElement("template");return o.innerHTML=e,o}}function M(e,s,o=e,r){if(s===ot)return s;let l=void 0!==r?o._$Co?.[r]:o._$Cl;const u=a(s)?void 0:s._$litDirective$;return l?.constructor!==u&&(l?._$AO?.(false),void 0===u?l=void 0:(l=new u(e),l._$AT(e,o,r)),void 0!==r?(o._$Co??=[])[r]=l:o._$Cl=l),void 0!==l&&(s=M(e,l._$AS(e,s.values),l,r)),s}class R{constructor(e,s){this._$AV=[],this._$AN=void 0,this._$AD=e,this._$AM=s}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(e){const{el:{content:s},parts:o}=this._$AD,r=(e?.creationScope??q).importNode(s,true);nt.currentNode=r;let l=nt.nextNode(),u=0,p=0,h=o[0];for(;void 0!==h;){if(u===h.index){let s;2===h.type?s=new k(l,l.nextSibling,this,e):1===h.type?s=new h.ctor(l,h.name,h.strings,this,e):6===h.type&&(s=new Z(l,this,e)),this._$AV.push(s),h=o[++p]}u!==h?.index&&(l=nt.nextNode(),u++)}return nt.currentNode=q,r}p(e){let s=0;for(const o of this._$AV)void 0!==o&&(void 0!==o.strings?(o._$AI(e,o,s),s+=o.strings.length-2):o._$AI(e[s])),s++}}class k{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(e,s,o,r){this.type=2,this._$AH=rt,this._$AN=void 0,this._$AA=e,this._$AB=s,this._$AM=o,this.options=r,this._$Cv=r?.isConnected??true}get parentNode(){let e=this._$AA.parentNode;const s=this._$AM;return void 0!==s&&11===e?.nodeType&&(e=s.parentNode),e}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(e,s=this){e=M(this,e,s),a(e)?e===rt||null==e||""===e?(this._$AH!==rt&&this._$AR(),this._$AH=rt):e!==this._$AH&&e!==ot&&this._(e):void 0!==e._$litType$?this.$(e):void 0!==e.nodeType?this.T(e):d(e)?this.k(e):this._(e)}O(e){return this._$AA.parentNode.insertBefore(e,this._$AB)}T(e){this._$AH!==e&&(this._$AR(),this._$AH=this.O(e))}_(e){this._$AH!==rt&&a(this._$AH)?this._$AA.nextSibling.data=e:this.T(q.createTextNode(e)),this._$AH=e}$(e){const{values:s,_$litType$:o}=e,r="number"==typeof o?this._$AC(e):(void 0===o.el&&(o.el=S.createElement(V(o.h,o.h[0]),this.options)),o);if(this._$AH?._$AD===r)this._$AH.p(s);else{const e=new R(r,this),o=e.u(this.options);e.p(s),this.T(o),this._$AH=e}}_$AC(e){let s=at.get(e.strings);return void 0===s&&at.set(e.strings,s=new S(e)),s}k(e){G(this._$AH)||(this._$AH=[],this._$AR());const s=this._$AH;let o,r=0;for(const l of e)r===s.length?s.push(o=new k(this.O(c()),this.O(c()),this,this.options)):o=s[r],o._$AI(l),r++;r<s.length&&(this._$AR(o&&o._$AB.nextSibling,r),s.length=r)}_$AR(e=this._$AA.nextSibling,s){for(this._$AP?.(false,true,s);e!==this._$AB;){const s=i$1(e).nextSibling;i$1(e).remove(),e=s}}setConnected(e){void 0===this._$AM&&(this._$Cv=e,this._$AP?.(e))}}class H{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(e,s,o,r,l){this.type=1,this._$AH=rt,this._$AN=void 0,this.element=e,this.name=s,this._$AM=r,this.options=l,o.length>2||""!==o[0]||""!==o[1]?(this._$AH=Array(o.length-1).fill(new String),this.strings=o):this._$AH=rt}_$AI(e,s=this,o,r){const l=this.strings;let u=false;if(void 0===l)e=M(this,e,s,0),u=!a(e)||e!==this._$AH&&e!==ot,u&&(this._$AH=e);else{const r=e;let p,h;for(e=l[0],p=0;p<l.length-1;p++)h=M(this,r[o+p],s,p),h===ot&&(h=this._$AH[p]),u||=!a(h)||h!==this._$AH[p],h===rt?e=rt:e!==rt&&(e+=(h??"")+l[p+1]),this._$AH[p]=h}u&&!r&&this.j(e)}j(e){e===rt?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,e??"")}}class I extends H{constructor(){super(...arguments),this.type=3}j(e){this.element[this.name]=e===rt?void 0:e}}class L extends H{constructor(){super(...arguments),this.type=4}j(e){this.element.toggleAttribute(this.name,!!e&&e!==rt)}}class z extends H{constructor(e,s,o,r,l){super(e,s,o,r,l),this.type=5}_$AI(e,s=this){if((e=M(this,e,s,0)??rt)===ot)return;const o=this._$AH,r=e===rt&&o!==rt||e.capture!==o.capture||e.once!==o.once||e.passive!==o.passive,l=e!==rt&&(o===rt||r);r&&this.element.removeEventListener(this.name,this,o),l&&this.element.addEventListener(this.name,this,e),this._$AH=e}handleEvent(e){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,e):this._$AH.handleEvent(e)}}class Z{constructor(e,s,o){this.element=e,this.type=6,this._$AN=void 0,this._$AM=s,this.options=o}get _$AU(){return this._$AM._$AU}_$AI(e){M(this,e)}}const lt=P.litHtmlPolyfillSupport;lt?.(S,k),(P.litHtmlVersions??=[]).push("3.3.2");const D=(e,s,o)=>{const r=o?.renderBefore??s;let l=r._$litPart$;if(void 0===l){const e=o?.renderBefore??null;r._$litPart$=l=new k(s.insertBefore(c(),e),e,void 0,o??{})}return l._$AI(e),l};const ct=globalThis;class i extends T{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){const e=super.createRenderRoot();return this.renderOptions.renderBefore??=e.firstChild,e}update(e){const s=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(e),this._$Do=D(s,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(true)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(false)}render(){return ot}}i._$litElement$=true,i["finalized"]=true,ct.litElementHydrateSupport?.({LitElement:i});const dt=ct.litElementPolyfillSupport;dt?.({LitElement:i});(ct.litElementVersions??=[]).push("4.2.2");const ut={state:{1:"Too Low",2:"Acceptable Low",3:"Ideal",4:"Ideal",5:"Acceptable High",6:"Too High"},sensor:{temperature:"Temperature",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Salinity",cya:"Cyanuric Acid",calcium:"Calcium",phosphate:"Phosphate",alkalinity:"Alkalinity",free_chlorine:"Free Chlorine",total_chlorine:"Total Chlorine",pressure:"Filter Pressure",specific_gravity:"Specific Gravity",magnesium:"Magnesium",water_level:"Water Level",flow_rate:"Flow Rate",uv_radiation:"UV Radiation",product_volume:"Product Volume",product_weight:"Product Weight",ec:"Electrical Conductivity",bromine:"Bromine"},time:{seconds:"just now",minutes:"{minutes} minute ago",hours:"{hours} hour ago",days:"{days} day ago"},time_plural:{seconds:"just now",minutes:"{minutes} minutes ago",hours:"{hours} hours ago",days:"{days} days ago"}};const pt={state:{1:"Trop bas",2:"Acceptable bas",3:"Idéal",4:"Idéal",5:"Acceptable élevé",6:"Trop élevé"},sensor:{temperature:"Température",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Salinité",cya:"Acide cyanurique",calcium:"Calcium",phosphate:"Phosphate",alkalinity:"Alcalinité",free_chlorine:"Chlore libre",total_chlorine:"Chlore total",pressure:"Pression du filtre",specific_gravity:"Densité spécifique",magnesium:"Magnésium",water_level:"Niveau d'eau",flow_rate:"Débit",uv_radiation:"Radiation UV",product_volume:"Volume Produit",product_weight:"Poids Produit",ec:"Conductivité Électrique",bromine:"Brome"},time:{seconds:"à l'instant",minutes:"il y a {minutes} minute",hours:"il y a {hours} heure",days:"il y a {days} jour"},time_plural:{seconds:"à l'instant",minutes:"il y a {minutes} minutes",hours:"il y a {hours} heures",days:"il y a {days} jours"}};const ht={state:{1:"Demasiado bajo",2:"Aceptable bajo",3:"Perfecto",4:"Perfecto",5:"Aceptable alto",6:"Demasiado alto"},sensor:{temperature:"Temperatura",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Salinidad",cya:"Acido cianúrico",calcium:"Calcio",phosphate:"Fosfato",alkalinity:"Alcalinidad",free_chlorine:"Cloro libre",total_chlorine:"Cloro total",pressure:"Pressione du filter relativa",specific_gravity:"Densidad relativa",magnesium:"Magnesio",water_level:"Nivel de agua",flow_rate:"Caudal",uv_radiation:"Radiación UV",product_volume:"Volumen Producto",product_weight:"Peso Producto",ec:"Conductividad Eléctrica",bromine:"Bromo"},time:{seconds:"justo ahora",minutes:"hace {minutes} minuto",hours:"hace {hours} hora",days:"hace {days} día"},time_plural:{seconds:"justo ahora",minutes:"hace {minutes} minutos",hours:"hace {hours} horas",days:"hace {days} días"}};const mt={state:{1:"Zu niedrig",2:"Akzeptabler Tiefstwert",3:"Ideal",4:"Ideal",5:"Akzeptabler Hochwert",6:"Zu hoch"},sensor:{temperature:"Temperatur",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Salzgehalt",cya:"Cyanursäure",calcium:"Kalzium",phosphate:"Phosphat",alkalinity:"Alkalinität",free_chlorine:"Freies Chlor",total_chlorine:"Gesamtchlor",pressure:"Sandfilterdruck",specific_gravity:"Spezifisches Gewicht",magnesium:"Magnesium",water_level:"Wasserstand",flow_rate:"Durchfluss",uv_radiation:"UV-Strahlung",product_volume:"Produktvolumen",product_weight:"Produktgewicht",ec:"Elektrische Leitfähigkeit",bromine:"Brom"},time:{seconds:"gerade erst",minutes:"vor {minutes} Minute",hours:"vor {hours} Stunde",days:"vor {days} Tag"},time_plural:{seconds:"gerade erst",minutes:"vor {minutes} Minuten",hours:"vor {hours} Stunden",days:"vor {days} Tagen"}};const gt={state:{1:"Troppo basso",2:"Accettabile basso",3:"Ideale",4:"Ideale",5:"Accettabile alto",6:"Troppo alto"},sensor:{temperature:"Temperatura",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Salinità",cya:"Acido cianurico",calcium:"Calcio",phosphate:"Fosfato",alkalinity:"Alcalinità",free_chlorine:"Cloro libero",total_chlorine:"Cloro totale",pressure:"Pressione filtro",specific_gravity:"Gravità specifica",magnesium:"Magnesio",water_level:"Livello dell'acqua",flow_rate:"Portata",uv_radiation:"Radiazione UV",product_volume:"Volume prodotto",product_weight:"Peso prodotto",ec:"Conducibilità Elettrica",bromine:"Bromo"},time:{seconds:"proprio ora",minutes:"{minutes} minuto fa",hours:"{hours} ora fa",days:"{days} giorno fa"},time_plural:{seconds:"proprio ora",minutes:"{minutes} minuti fa",hours:"{hours} ore fa",days:"{days} giorni fa"}};const _t={state:{1:"Te laag",2:"Acceptabel laag",3:"Ideaal",4:"Ideaal",5:"Acceptabel hoog",6:"Te hoog"},sensor:{temperature:"Temperatuur",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Zoutgehalte",cya:"Cyanuurzuur",calcium:"Calcium",phosphate:"Fosfaat",alkalinity:"Alkaliteit",free_chlorine:"Vrij chloor",total_chlorine:"Totaal chloor",pressure:"Filterdruk",specific_gravity:"Soortelijk gewicht",magnesium:"Magnesium",water_level:"Waterniveau",flow_rate:"Debiet",uv_radiation:"UV-straling",product_volume:"Productvolume",product_weight:"Productgewicht",ec:"Elektrische Geleidbaarheid",bromine:"Broom"},time:{seconds:"zojuist",minutes:"{minutes} minuut geleden",hours:"{hours} uur geleden",days:"{days} dag geleden"},time_plural:{seconds:"zojuist",minutes:"{minutes} minuten geleden",hours:"{hours} uur geleden",days:"{days} dagen geleden"}};const vt={state:{1:"Muito Baixo",2:"Torelavel mas Baixo",3:"Ideal",4:"Ideal",5:"Toleravel mas Alto",6:"Muito Alto"},sensor:{temperature:"Temperatura",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Salinidade",cya:"Ácido cianúrico",calcium:"Calcio",phosphate:"Fosfato",alkalinity:"Alcalinidade",free_chlorine:"Cloro livres",total_chlorine:"Cloro total",pressure:"Pressão do filtro",specific_gravity:"Gravidade específica",magnesium:"Magnésio",water_level:"Nivel de agua",flow_rate:"Caudal",uv_radiation:"Radiação UV",product_volume:"Volume Produto",product_weight:"Peso Produto",ec:"Condutividade Elétrica",bromine:"Bromo"},time:{seconds:"agora mesmo",minutes:"há {minutes} minuto",hours:"há {hours} hora",days:"há {days} dia"},time_plural:{seconds:"agora mesmo",minutes:"há {minutes} minutos",hours:"há {hours} horas",days:"há {days} dias"}};const yt={state:{1:"Muito Baixo",2:"Aceitavel Baixo",3:"Ideal",4:"Ideal",5:"Aceitavel Alto",6:"Muito Alto"},sensor:{temperature:"Temperatura",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Salinidade",cya:"Acido Cianurico",calcium:"Calcio",phosphate:"Fosfato",alkalinity:"Alcalinidade",free_chlorine:"Cloro Livre",total_chlorine:"Cloro Total",pressure:"Pressão no Filtro",specific_gravity:"Gravidade específica",magnesium:"Magnésio",water_level:"Nivel de agua",flow_rate:"Caudal",uv_radiation:"Radiação UV",product_volume:"Volume Produto",product_weight:"Peso Produto",ec:"Condutividade Elétrica",bromine:"Bromo"},time:{seconds:"agora mesmo",minutes:"há {minutes} minuto",hours:"há {hours} hora",days:"há {days} dia"},time_plural:{seconds:"agora mesmo",minutes:"há {minutes} minutos",hours:"há {hours} horas",days:"há {days} dias"}};const ft={state:{1:"Prea mic",2:"Mic",3:"Ideal",4:"Ideal",5:"Mare",6:"Prea mare"},sensor:{temperature:"Temperatură",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Salinitate",cya:"Acid cianuric",calcium:"Calciu",phosphate:"Fosfat",alkalinity:"Alcalinitate",free_chlorine:"Clor liber",total_chlorine:"Clor total",pressure:"Presiune filtru",specific_gravity:"Greutate specifică",magnesium:"Magneziu",water_level:"Nivel apă",flow_rate:"Debit",uv_radiation:"Radiație UV",product_volume:"Volum produs",product_weight:"Greutate produs",ec:"Conductivitate Electrică",bromine:"Brom"},time:{seconds:"chiar acum",minutes:"acum {minutes} minut",hours:"acum {hours} oră",days:"acum {days} zi"},time_plural:{seconds:"chiar acum",minutes:"acum {minutes} minute",hours:"acum {hours} ore",days:"acum {days} zile"}};const $t={state:{1:"Príliš nízky",2:"Akceptovateľne nízky",3:"Ideálny",4:"Ideálny",5:"Akceptovateľne vysoký",6:"Príliš vysoký"},sensor:{temperature:"Teplota",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Salinita",cya:"Kyselina kyanurová",calcium:"Vápnik",phosphate:"Fosfát",alkalinity:"Alkalinita",free_chlorine:"Voľný chlór",total_chlorine:"Celkový chlór",pressure:"Tlak filtra",specific_gravity:"Špecifická hmotnosť",magnesium:"Magnézium",water_level:"Úroveň vody",flow_rate:"Prietok",uv_radiation:"UV žiarenie",product_volume:"Objem produktu",product_weight:"Hmotnosť produktu",ec:"Elektrická Vodivosť",bromine:"Bróm"},time:{seconds:"práve teraz",minutes:"pred {minutes} minútou",hours:"pred {hours} hodinou",days:"pred {days} dňom"},time_plural:{seconds:"práve teraz",minutes:"pred {minutes} minútami",hours:"pred {hours} hodinami",days:"pred {days} dňami"}};const bt={state:{1:"נמוך מדי",2:"נמוך מאוד",3:"אידיאלי",4:"אידיאלי",5:"גבוה מאוד",6:"גבוה מדי"},sensor:{temperature:"טמפרטורה",ph:"PH",orp:"ORP",tds:"TDS",salinity:"מליחות",cya:"חומצה ציאנורית",calcium:"סידן",phosphate:"פוספט",alkalinity:"אלקליניות",free_chlorine:"כלור חופשי",total_chlorine:"כלור כולל",pressure:"לחץ מסנן",specific_gravity:"משקל סגולי",magnesium:"מגנזיום",water_level:"מפלס מים",flow_rate:"קצב זרימה",uv_radiation:"קרינת UV",product_volume:"נפח מוצר",product_weight:"משקל מוצר",ec:"מוליכות חשמלית",bromine:"ברום"},time:{seconds:"כרגע",minutes:"לפני {minutes} דקה",hours:"לפני {hours} שעה",days:"לפני {days} יום"},time_plural:{seconds:"כרגע",minutes:"לפני {minutes} דקות",hours:"לפני {hours} שעות",days:"לפני {days} ימים"}};const xt={state:{1:"Слишком низкий",2:"Приемлемо низкий",3:"Идеальный",4:"Идеальный",5:"Приемлемо высокий",6:"Слишком высокий"},sensor:{temperature:"Температура",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Соленость",cya:"Циануровая кислота",calcium:"Кальций",phosphate:"Фосфаты",alkalinity:"Щелочность",free_chlorine:"Свободный хлор",total_chlorine:"Общий хлор",pressure:"Давление фильтра",specific_gravity:"Удельный вес",magnesium:"Магний",water_level:"Уровень воды",flow_rate:"Расход воды",uv_radiation:"УФ-излучение",product_volume:"Объем продукта",product_weight:"Вес продукта",ec:"Электропроводность",bromine:"Бром"},time:{seconds:"только что",minutes:"{minutes} минуту назад",hours:"{hours} час назад",days:"{days} день назад"},time_plural:{seconds:"только что",minutes:"{minutes} минут назад",hours:"{hours} часов назад",days:"{days} дней назад"}};const wt={state:{1:"Túl alacsony",2:"Elfogadhatóan alacsony",3:"Ideális",4:"Ideális",5:"Elfogadhatóan magas",6:"Túl magas"},sensor:{temperature:"Hőmérséklet",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Sótartalom",cya:"Cianursav",calcium:"Kalcium",phosphate:"Foszfát",alkalinity:"Lúgosság",free_chlorine:"Szabad klór",total_chlorine:"Összes klór",pressure:"Szűrő nyomás",specific_gravity:"Fajsúly",magnesium:"Magnézium",water_level:"Vízszint",flow_rate:"Áramlási sebesség",uv_radiation:"UV sugárzás",product_volume:"Termék térfogat",product_weight:"Termék tömeg",ec:"Elektromos vezetőképesség",bromine:"Bróm"},time:{seconds:"éppen most",minutes:"{minutes} perce",hours:"{hours} órája",days:"{days} napja"},time_plural:{seconds:"éppen most",minutes:"{minutes} perce",hours:"{hours} órája",days:"{days} napja"}};const At={state:{1:"För Lågt",2:"Lågt, Acceptabelt",3:"Idealt",4:"Idealt",5:"Högt, Acceptabelt",6:"För Högt"},sensor:{temperature:"Temperatur",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Salthalt",cya:"Cyanursyra",calcium:"Kalcium",phosphate:"Fosfat",alkalinity:"Alkalinitet",free_chlorine:"Klor Fritt",total_chlorine:"Klor Total",pressure:"Tryck Filter",specific_gravity:"Densitet",magnesium:"Magnesium",water_level:"Vattennivå",flow_rate:"Flödeshastighet",uv_radiation:"UV-Strålning",product_volume:"Produkt Volym",product_weight:"Produkt Vikt",ec:"Elektrisk Ledningsförmåga",bromine:"Brom"},time:{seconds:"nu",minutes:"{minutes} minut tillbaka",hours:"{hours} timme tillbaka",days:"{days} dag tillbaka"},time_plural:{seconds:"nu",minutes:"{minutes} minuter tillbaka",hours:"{hours} timmar tillbaka",days:"{days} dagar tillbaka"}};const kt={state:{1:"Příliš nízká",2:"Přijatelně nízká",3:"Ideální",4:"Ideální",5:"Přijatelně vysoká",6:"Příliš vysoká"},sensor:{temperature:"Teplota",ph:"pH",orp:"ORP",tds:"TDS",salinity:"Salinita",cya:"Kyselina kyanurová",calcium:"Vápník",phosphate:"Fosfát",alkalinity:"Alkalita",free_chlorine:"Volný chlór",total_chlorine:"Celkový chlór",pressure:"Tlak filtrace",specific_gravity:"Měrná hmotnost",magnesium:"Hořčík",water_level:"Hladina vody",flow_rate:"Průtok",uv_radiation:"UV záření",product_volume:"Objem přípravku",product_weight:"Hmotnost přípravku",ec:"Elektrická vodivost",bromine:"Brom"},time:{seconds:"právě nyní",minutes:"před {minutes} minutou",hours:"před {hours} hodinou",days:"před {days} dnem"},time_plural:{seconds:"právě nyní",minutes:"před {minutes} minutami",hours:"před {hours} hodinami",days:"před {days} dny"}};const St={en:ut,fr:pt,es:ht,de:mt,it:gt,nl:_t,pt:vt,"pt-br":yt,ro:ft,sk:$t,he:bt,ru:xt,hu:wt,sv:At,cs:kt};const getTranslation=(e,s)=>{const o=s.split(".");let r=St[e]||St.en;for(const e of o)if(r&&typeof r==="object")r=r[e];else return s;return r||s};const formatTranslation=(e,s)=>{if(!s)return e;return Object.entries(s).reduce((e,[s,o])=>e.replace(`{${s}}`,o),e)};const Ct=i$3`
+  /** Host element styles */
+  :host {
+    background: var(--ha-card-background, var(--card-background-color, white));
+    border-radius: var(--ha-card-border-radius, 12px);
+    border-width: var(--ha-card-border-width, 4px);
+    box-shadow: var(--ha-card-box-shadow);
+    color: var(--primary-text-color);
+    display: block;
+    transition: all 0.3s ease-out 0s;
+    position: relative;
+    padding-top: 25px;
+  }
+
+  /** Section layouts */
+  .section {
+    padding-bottom: 10px;
+    padding: 0px;
+  }
+
+  .section-compact {
+    padding-bottom: 5px;
+    padding: 0px;
+  }
+
+  /** Title styles */
+  .pool-monitor-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    margin: 0;
+  }
+
+  /** Entity image container */
+  .pool-monitor-entity-img {
+    text-align: right;
+    width: 10%;
+    float: left;
+  }
+
+  /** Main container layouts */
+  .pool-monitor-container {
+    display: grid;
+    padding: 5px;
+    height: 15px;
+  }
+
+  .pool-monitor-container-values {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding-top: 0px;
+    padding-left: 20px;
+    margin-top: -10px;
+  }
+
+  .pool-monitor-container-marker {
+    display: grid;
+    grid-template-columns: 10% repeat(6, 1fr) 5%;
+    padding: 10px;
+    grid-template-rows: 15px;
+    line-height: 15px;
+    position: relative;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 0;
+    grid-template-rows: 15px;
+    line-height: 15px;
+    position: relative;
+    margin: 0px;
+  }
+
+  .pool-monitor-container-marker .marker {
+    text-align: center;
+    justify-self: center;
+    min-width: 80px;
+    height: 20px;
+    padding-top: 5px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .pool-monitor-container-marker .marker-state {
+    width: 60px;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .pool-monitor-container-marker .triangle {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    position: absolute;
+    bottom: 0px;
+    transform: translateX(-50%);
+  }
+
+  .grid-item {
+    padding: 7px 0;
+    margin: 0;
+  }
+
+  .grid-item-text-box {
+    font-size: 0.8em;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .item-row {
+    grid-row: 1;
+  }
+
+  .cursor {
+    text-align: center;
+    justify-self: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: black;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .cursor-text {
+    position: absolute;
+    width: 200px;
+    height: 17px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 0px;
+    margin-top: -1px;
+    font-size: 11px;
+    font-weight: 500;
+    text-align: right;
+    color: black;
+    justify-self: right;
+    z-index: 1;
+  }
+
+  .progress-bar-child {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .sensor-monitor-container {
+    position: relative;
+    height: 20px;
+    margin: 0px 0px 0px 0px;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .warning-message {
+    background-color: var(--warning-color, rgba(255, 152, 0, 0.1));
+    border-left: 4px solid var(--warning-color, #ff9800);
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    color: var(--warning-text-color, var(--primary-text-color));
+    font-size: 0.95em;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .warning-message ha-icon {
+    color: var(--warning-color, #ff9800);
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;class cardContent{static generateTitle(e){const s=e.title!==void 0?st` <h1 class="pool-monitor-title">${e.title}</h1> `:st``;return st`${s}`}static generateBody(e,s){if(!s)return st` <div class="warning-message">No sensor data available</div> `;return st`
+      <!-- ##### ${s.name} section ##### -->
+      <div class="section" @click=${()=>cardContent._moreinfo(s.entity)}>
+        <div class="pool-monitor-container-marker">
+          <div
+            class="marker"
+            style="background-color: ${s.color} ;color: black;left: ${s.pct_marker}%;"
+          >
+            ${s.value} ${s.unit}
+          </div>
+          <div
+            class="marker-state"
+            style="font-size: 0.8em; padding-top: 5px;color:${s.color};width: 200px;padding-${s.side_align}:40px;text-align:${s.side_align};background-color:transparent ;${s.side_align}: ${s.pct_state_step}%;"
+          >
+            ${s.state}
+          </div>
+          <div
+            class="triangle"
+            style="border-top: 10px solid ${s.color} ;left: ${s.pct_marker}%;"
+          ></div>
+        </div>
+        ${!s.hide_icon?st`
+              <div class="pool-monitor-entity-img">
+                ${s.is_mdi?st`
+                      <ha-icon icon="${s.mdi_icon}" style="width: 32px; height: 32px;"></ha-icon>
+                    `:st` <img src="${s.img_src}" style="width: 32px; height: 32px;" /> `}
+              </div>
+            `:""}
+        <div class="pool-monitor-container">
+          ${e.display.gradient?st`
+                <div
+                  class="progress-bar-child"
+                  style="background: linear-gradient(to right, 
+              ${s.mode==="heatflow"?`${e.colors.cool} 15%, \n                 ${e.colors.low} 50%, \n                 ${e.colors.warn} 85%`:`${e.colors.warn} 5%, \n                 ${e.colors.low} 30%, \n                 ${e.colors.normal}, \n                 ${e.colors.normal}, \n                 ${e.colors.low} 70%, \n                 ${e.colors.warn} 95%`}
+            );"
+                ></div>
+              `:st`
+                <div class="grid-container">
+                  <div
+                    style="background-color: ${e.colors.warn}; grid-column: 1; border-radius: 5px 0px 0px 5px"
+                    class="grid-item item-row"
+                  ></div>
+                  <div
+                    style="background-color: ${e.colors.low}; grid-column: 2;"
+                    class="grid-item item-row"
+                  ></div>
+                  <div
+                    style="background-color: ${e.colors.normal}; grid-column: 3;"
+                    class="grid-item item-row"
+                  ></div>
+                  <div
+                    style="background-color: ${e.colors.normal}; grid-column: 4;"
+                    class="grid-item item-row"
+                  ></div>
+                  <div
+                    style="background-color: ${e.colors.low}; grid-column: 5;"
+                    class="grid-item item-row"
+                  ></div>
+                  <div
+                    style="background-color: ${e.colors.warn}; grid-column: 6; border-radius: 0px 5px 5px 0px;"
+                    class="grid-item item-row"
+                  ></div>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; margin: 0 10px; font-size: 0.7em; color: var(--secondary-text-color);"
+                >
+                  <span>${s.min}</span>
+                  <span>${s.max}</span>
+                </div>
+              `}
+          ${s.pct_min!==s.pct_cursor?st`<div
+                class="cursor-text"
+                style="border-left: 2px solid ${e.colors.hi_low}; border-top: 2px solid ${e.colors.hi_low}; border-bottom: 2px solid ${e.colors.hi_low}; width: 2px; height: 12px; text-align:${s.side_align}; background-color:transparent; ${s.side_align}: ${s.pct_min}%;"
+              ></div>`:""}
+          ${s.pct_max!==s.pct_cursor?st`<div
+                class="cursor-text"
+                style="border-right: 2px solid ${e.colors.hi_low}; border-top: 2px solid ${e.colors.hi_low}; border-bottom: 2px solid ${e.colors.hi_low}; width: 2px; height: 12px; text-align:${s.side_align}; background-color:transparent; ${s.side_align}: ${s.pct_max}%;"
+              ></div>`:""}
+        </div>
+        <div class="pool-monitor-container-values">
+          <div
+            style="background-color: transparent; grid-column: 1 ; border-radius: 5px 0px 0px 5px"
+            class="grid-item item-row"
+          >
+            <div style="font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 ">
+              ${s.setpoint_class[0]}
+            </div>
+          </div>
+          <div style="background-color: transparent; grid-column: 2 ;" class="grid-item item-row">
+            <div style="font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 ">
+              ${s.setpoint_class[1]}
+            </div>
+          </div>
+          <div style="background-color: transparent; grid-column: 3 ;" class="grid-item item-row">
+            <div
+              style="font-size: 0.8em;color:${e.colors.normal};text-align:right;margin:-5px 2px 0 0 "
+            >
+              ${s.setpoint_class[2]}
+            </div>
+          </div>
+          <div style="background-color: transparent; grid-column: 4 ;" class="grid-item item-row">
+            <div style="font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 ">
+              ${s.setpoint_class[3]}
+            </div>
+          </div>
+          <div style="background-color: transparent; grid-column: 5 ;" class="grid-item item-row">
+            <div style="font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 ">
+              ${s.setpoint_class[4]}
+            </div>
+          </div>
+          <div
+            style="background-color: transparent; grid-column: 6 ; border-radius: 0px 5px 5px 0px;"
+            class="grid-item item-row"
+          ></div>
+        </div>
+      </div>
+      <div style="text-align:left;padding-left:15px;">
+        ${s.title}<br /><small style="position: relative;top:-5px;font-size:9px;color:lightgrey"
+          >${s.last_updated}</small
+        >
+      </div>
+    `}static generateCompactBody(e,s){if(!s)return st` <div class="warning-message">No sensor data available</div> `;return st`
+      <!-- ##### ${s.name} section ##### -->
+      <div class="section-compact" @click=${()=>cardContent._moreinfo(s.entity)}>
+        ${!s.hide_icon?st`
+              <div class="pool-monitor-entity-img">
+                ${s.is_mdi?st`
+                      <ha-icon icon="${s.mdi_icon}" style="width: 24px; height: 24px;"></ha-icon>
+                    `:st` <img src="${s.img_src}" style="width: 24px; height: 24px;" /> `}
+              </div>
+            `:""}
+        <div class="pool-monitor-container">
+          ${e.display.gradient?st`
+                <div
+                  class="progress-bar-child"
+                  style="background: linear-gradient(to right, 
+              ${s.mode==="heatflow"?`${e.colors.cool} 15%, \n                 ${e.colors.low} 50%, \n                 ${e.colors.warn} 85%`:`${e.colors.warn} 5%, \n                 ${e.colors.low} 30%, \n                 ${e.colors.normal}, \n                 ${e.colors.normal}, \n                 ${e.colors.low} 70%, \n                 ${e.colors.warn} 95%`}
+            );"
+                ></div>
+              `:st`
+                <div class="grid-container">
+                  <!-- <div style="background-color: transparent; grid-column: 1 ; border: 0px; box-shadow:none" class="grid-item item-row"> <div style="font-size: 0.8em;color:lightgrey;text-align:left;margin:3px 2px 0 0 ">${s.unit}</div></div> -->
+                  <div
+                    style="background-color: ${e.colors.warn}; grid-column: 1; border-radius: 5px 0px 0px 5px"
+                    class="grid-item item-row"
+                  ></div>
+                  <div
+                    style="background-color: ${e.colors.low}; grid-column: 2;"
+                    class="grid-item item-row"
+                  ></div>
+                  <div
+                    style="background-color: ${e.colors.normal}; grid-column: 3;"
+                    class="grid-item item-row"
+                  ></div>
+                  <div
+                    style="background-color: ${e.colors.normal}; grid-column: 4;"
+                    class="grid-item item-row"
+                  ></div>
+                  <div
+                    style="background-color: ${e.colors.low}; grid-column: 5;"
+                    class="grid-item item-row"
+                  ></div>
+                  <div
+                    style="background-color: ${e.colors.warn}; grid-column: 6; border-radius: 0px 5px 5px 0px;"
+                    class="grid-item item-row"
+                  ></div>
+                </div>
+                <div
+                  style="display: flex; justify-content: space-between; margin: 0 10px; font-size: 0.7em; color: var(--secondary-text-color);"
+                >
+                  <span>${s.min}</span>
+                  <span>${s.max}</span>
+                </div>
+              `}
+          <div
+            class="cursor-text"
+            style="border-${s.side_align}: 5px solid ${e.marker}; text-align:${s.side_align};background-color:transparent ;${s.side_align}: ${s.pct_cursor}%;"
+          >
+            &nbsp; ${s.title} ${s.value} ${s.unit} ${s.separator} ${s.state} &nbsp;
+          </div>
+          ${s.pct_min!==s.pct_cursor?st`<div
+                class="cursor-text"
+                style="border-left: 2px solid ${e.colors.hi_low}; border-top: 2px solid ${e.colors.hi_low}; border-bottom: 2px solid ${e.colors.hi_low}; width: 2px; height: 12px; text-align:${s.side_align}; background-color:transparent; ${s.side_align}: ${s.pct_min}%;"
+              ></div>`:""}
+          ${s.pct_max!==s.pct_cursor?st`<div
+                class="cursor-text"
+                style="border-right: 2px solid ${e.colors.hi_low}; border-top: 2px solid ${e.colors.hi_low}; border-bottom: 2px solid ${e.colors.hi_low}; width: 2px; height: 12px; text-align:${s.side_align}; background-color:transparent; ${s.side_align}: ${s.pct_max}%;"
+              ></div>`:""}
+        </div>
+        <div class="pool-monitor-container-values">
+          <div
+            style="background-color: transparent; grid-column: 1 ; border-radius: 5px 0px 0px 5px"
+            class="grid-item item-row"
+          >
+            <div style="font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 ">
+              ${s.setpoint_class[0]}
+            </div>
+          </div>
+          <div style="background-color: transparent; grid-column: 2 ;" class="grid-item item-row">
+            <div style="font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 ">
+              ${s.setpoint_class[1]}
+            </div>
+          </div>
+          <div style="background-color: transparent; grid-column: 3 ;" class="grid-item item-row">
+            <div
+              style="font-size: 0.8em;color:${e.colors.normal};text-align:right;margin:-5px 2px 0 0 "
+            >
+              ${s.setpoint_class[2]}
+            </div>
+          </div>
+          <div style="background-color: transparent; grid-column: 4 ;" class="grid-item item-row">
+            <div style="font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 ">
+              ${s.setpoint_class[3]}
+            </div>
+          </div>
+          <div style="background-color: transparent; grid-column: 5 ;" class="grid-item item-row">
+            <div style="font-size: 0.8em;text-align:right;margin:-5px 2px 0 0 ">
+              ${s.setpoint_class[4]}
+            </div>
+          </div>
+          <div
+            style="background-color: transparent; grid-column: 6 ; border-radius: 0px 5px 5px 0px;"
+            class="grid-item item-row"
+          ></div>
+        </div>
+      </div>
+    `}static _moreinfo(e){const s=new Event("hass-more-info",{bubbles:true,composed:true});s.detail={entityId:e};const o=document.querySelector("home-assistant");if(o)o.dispatchEvent(s)}}const Et={compact:false,show_names:true,show_labels:true,show_last_updated:false,show_icons:true,show_units:true,gradient:true,language:"en"};const Tt={low:"#fdcb6e",warn:"#e17055",normal:"#00b894",cool:"#00BFFF",marker:"#000000",hi_low:"#00000099"};function getDisplayConfig(){return{...Et}}function getColorConfig(){return{...Tt}}function getSensorConfig(e,s){if(!s[e])return{};return{...s[e]}}class MonitorCardBase extends i{static get properties(){return{hass:{},config:{}}}static styles=Ct;constructor(){super()}render(){const e=this.getConfig();const s=this.processData();const o=e.display.compact?cardContent.generateCompactBody:cardContent.generateBody;if(!s||Object.keys(s).length===0)return st` <div id="pool-monitor-card">
+        <div class="warning-message">
+          <ha-icon icon="mdi:alert"></ha-icon>
+          <span>No valid sensor data available</span>
+        </div>
+      </div>`;return st` <div id="pool-monitor-card">
+      ${cardContent.generateTitle(e)}
+      ${Object.values(s).map(s=>{if(s?.invalid)return st`
+            <div class="warning-message">
+              <ha-icon icon="mdi:alert"></ha-icon>
+              <span
+                >Sensor ${s?.name||"unknown"} is not supported. Please verify its
+                configuration and ensure it is compatible with the card.</span
+              >
+            </div>
+          `;else if(s?.value===null)return st`
+            <div class="warning-message">
+              <ha-icon icon="mdi:alert"></ha-icon>
+              <span
+                >Entity ${s?.entity||"unknown"} could not be found. Please verify its
+                name and ensure the entity is properly configured.</span
+              >
+            </div>
+          `;return o(e,s)})}
+    </div>`}processData(){const e={};const s=this.getConfig();Object.entries(s.sensors).forEach(([s,o])=>{const r=Array.isArray(o)?o:[o];r.forEach((o,r)=>{const l=`${s}_${r+1}`;e[l]=this.calculateData(s,o.title||this.getTranslatedText("sensor."+s),o.entity,o.min,o.max,o.setpoint,o.step,o.unit,o.icon,o.image_url,o.mode,o.min_limit,o.override_value,o.override,o.invalid)})});return e}getTranslatedText(e,s){const o=this.config?.display.language||"en";const r=getTranslation(o,e);return formatTranslation(r,s)}calculateData(e,s,o,r,l,u,p,h,m,g,_,v,f,$,b){const w={};const A=this.getConfig();const C=this.constructor.SENSORS||{};const E=getSensorConfig(e,C);const T=this.constructor.IMAGE_BASE_URL||"";w.name=e;w.invalid=b;w.mode=_;w.title=A.display.show_names?s:st`&nbsp;`;w.hide_icon=false;w.is_mdi=false;if(!A.display.show_icons)w.hide_icon=true;else{const s=m||"";const o=g||"";if(s==="hide")w.hide_icon=true;else if(o)w.img_src=o;else if(s&&typeof s==="string"&&s.startsWith("mdi:")){w.is_mdi=true;w.mdi_icon=s}else if(T)w.img_src=`${T}/${e}.png`;else{w.is_mdi=true;w.mdi_icon="mdi:gauge"}}if(!this.hass||!this.hass.states||!this.hass.states[o]){console.warn(`Entity not found: ${o}`);w.value=null;w.entity=o;return w}const P=this.hass.states[o];const O=this.hass.entities?.[o];const U=O?.display_precision??P.attributes?.display_precision??P.attributes?.precision??this.countDecimals(parseFloat(P.state));const F=parseFloat(P.state);w.value=isNaN(F)?null:Number(F.toFixed(U));w.entity=o;if(A.display.show_last_updated)w.last_updated=this.timeFromNow(P.last_updated);w.unit=A.display.show_units?h||E.unit||"":"";if($)w.value=f||E.override;w.min_value=r!==void 0&&this.hass.states[r]&&!isNaN(parseFloat(this.hass.states[r].state))?parseFloat(this.hass.states[r].state):w.value;w.max_value=l!==void 0&&this.hass.states[l]&&!isNaN(parseFloat(this.hass.states[l].state))?parseFloat(this.hass.states[l].state):w.value;u=u!=null?parseFloat(u):E.setpoint!=null?parseFloat(E.setpoint):w.value;p=p!=null?parseFloat(p):E.step!=null?parseFloat(E.step):.1;const j=Math.max(this.countDecimals(u),this.countDecimals(p));w.setpoint=u;const B=v!==void 0?Number(v):-1/0;const W=Math.max(B,u-2*p);const q=Math.max(B,u-p);const G=Math.max(B,u);const K=Math.max(B,u+p);const J=Math.max(B,u+2*p);w.setpoint_class=[W.toFixed(j),q.toFixed(j),G.toFixed(j),K.toFixed(j),J.toFixed(j)];w.separator=A.display.show_labels?"-":"";w.color="transparent";if(w.value!==null)w.value=Math.max(B,w.value);if(_==="heatflow")if(Number(w.value)<Number(w.setpoint_class[1])){w.state=A.display.show_labels?this.getTranslatedText("state.1"):"";w.color=A.colors.cool}else if(Number(w.value)>=Number(w.setpoint_class[1])&&Number(w.value)<Number(w.setpoint_class[3])){w.state=A.display.show_labels?this.getTranslatedText("state.3"):"";w.color=A.colors.low}else{w.state=A.display.show_labels?this.getTranslatedText("state.5"):"";w.color=A.colors.warn}else if(Number(w.value)<Number(w.setpoint_class[0])){w.state=A.display.show_labels?this.getTranslatedText("state.1"):"";w.color=A.colors.warn}else if(Number(w.value)>=Number(w.setpoint_class[0])&&Number(w.value)<Number(w.setpoint_class[1])){w.state=A.display.show_labels?this.getTranslatedText("state.2"):"";w.color=A.colors.low}else if(Number(w.value)>=Number(w.setpoint_class[1])&&Number(w.value)<Number(w.setpoint_class[2])){w.state=A.display.show_labels?this.getTranslatedText("state.3"):"";w.color=A.colors.normal}else if(Number(w.value)>=Number(w.setpoint_class[2])&&Number(w.value)<Number(w.setpoint_class[3])){w.state=A.display.show_labels?this.getTranslatedText("state.4"):"";w.color=A.colors.normal}else if(Number(w.value)>=Number(w.setpoint_class[3])&&Number(w.value)<Number(w.setpoint_class[4])){w.state=A.display.show_labels?this.getTranslatedText("state.5"):"";w.color=A.colors.low}else if(Number(w.value)>=Number(w.setpoint_class[4])){w.state=A.display.show_labels?this.getTranslatedText("state.6"):"";w.color=A.colors.warn}w.progressClass=e==="temperature"?"progress-temp":"progress";w.pct=Math.max(0,Math.min(98.5,Math.max(0,w.value-(u-3*p))/(6*p)*.85*100+15)).toFixed(0);w.pct_min=Math.max(0,Math.min(98.5,Math.max(0,w.min_value-(u-3*p))/(6*p)*.85*100+15)).toFixed(0);w.pct_max=Math.max(0,Math.min(98.5,Math.max(0,w.max_value-(u-3*p))/(6*p)*.85*100+15)).toFixed(0);w.pct_marker=w.value>w.setpoint?w.pct-12:w.pct-5;w.side_align=w.value>u?"right":"left";w.pct_cursor=w.value>u?100-parseFloat(w.pct):parseFloat(w.pct)-2;w.pct_state_step=w.value>u?105-parseFloat(w.pct):parseFloat(w.pct)+5;w.pct_min=w.value>u?100-parseFloat(w.pct_min):parseFloat(w.pct_min)-2;w.pct_max=w.value>u?100-parseFloat(w.pct_max):parseFloat(w.pct_max)-2;return w}countDecimals(e){if(e===void 0||e===null)return 0;if(Math.floor(e)===e)return 0;const s=e.toString();if(s.includes("."))return s.split(".")[1].length||0;return 0}timeFromNow(e){const s=new Date(e);const o=Date.now()-s.getTime();const t=(e,s)=>{const o=s===1?"time":"time_plural";const r={[e]:s};return this.getTranslatedText(`${o}.${e}`,r)};const r=Math.floor(o/6e4);const l=Math.floor(r/60);const u=Math.floor(l/24);if(r<1)return t("seconds",0);if(r<60)return t("minutes",r);if(l<24)return t("hours",l);return t("days",u)}getConfig(){return this.config}setConfig(e){const s=this.constructor.SENSORS||{};const o=Object.keys(s);const r={display:getDisplayConfig(),colors:getColorConfig()};const l={...e,display:{...r.display,...e.display||{}},colors:{...r.colors,...e.colors||{}},sensors:{}};if(!e.sensors)throw new Error('Configuration requires sensors to be defined under the "sensors" key.');Object.entries(e.sensors).forEach(([e,r])=>{const u=s[e]||{};const p=Array.isArray(r)?[...r]:[{...r}];if(p.length===0)throw new Error(`Empty sensor array for ${e}`);const h=p.map(e=>({...u,...e,nameDefinedByUser:!!e.name}));h.forEach((s,r)=>{if(!s.entity)throw new Error(`Missing entity for ${e}[${r}]`);if(s.nameDefinedByUser)s.title=s.name;if(o.length>0&&!o.includes(e))s.invalid=true;else s.invalid=false});l.sensors[e]=h});this.config=l}}const Pt="1.1.0";const Mt="2026-02-21-14-36";const Nt=`${Pt} (${Mt})`;console.info(`%c SENSOR-MONITORING-CARD %c ${Nt} `,"color: white; background: #6c5ce7; font-weight: 700;","color: #6c5ce7; background: white; font-weight: 700;");class SensorMonitorCard extends MonitorCardBase{static CARD_INFO={cardType:"sensor-monitor-card",cardName:"Sensor Monitor Card",cardDescription:"A generic Home Assistant card for monitoring any sensor with customizable names, units, setpoints, and display options"};static SENSORS={};setConfig(e){super.setConfig(e)}}customElements.define("sensor-monitor-card",SensorMonitorCard);e.SensorMonitorCard=SensorMonitorCard;Object.defineProperty(e,Symbol.toStringTag,{value:"Module"});return e}({});
+//# sourceMappingURL=sensor-monitor-card.js.map

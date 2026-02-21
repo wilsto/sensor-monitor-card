@@ -1,58 +1,28 @@
 {
   "name": "sensor-monitor-card",
-  "version": "v1.0.0",
-  "description": "Sensor Monitoring Card for Home Assistant Lovelace UI",
-  "keywords": [
-    "home-assistant",
-    "homeassistant",
-    "hass",
-    "automation",
-    "lovelace",
-    "monitoring",
-    "custom-cards"
-  ],
-  "main": "src/main.js",
-  "module": "src/main.js",
-  "repository": "git@github.com:wilsto/sensor-monitor-card.git",
-  "author": "wilsto",
-  "license": "MIT",
-  "dependencies": {
-    "@lit-labs/scoped-registry-mixin": "^1.0.0",
-    "@material/mwc-list": "^0.25.3",
-    "@material/mwc-menu": "^0.25.3",
-    "@material/mwc-ripple": "^0.25.3",
-    "lit": "^2.1.2",
-    "resize-observer-polyfill": "^1.5.1"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.21.5",
-    "@babel/core": "^7.22.0",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/plugin-proposal-decorators": "^7.22.0",
-    "@babel/plugin-proposal-private-methods": "^7.18.6",
-    "@babel/plugin-transform-template-literals": "^7.18.9",
-    "@babel/preset-env": "^7.22.0",
-    "@rollup/plugin-json": "^6.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "babel-plugin-iife-wrap": "^1.1.0",
-    "babel-preset-minify": "^0.5.2",
-    "eslint": "^8.41.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.0",
-    "rollup": "^3.23.0",
-    "rollup-plugin-ignore": "^1.0.10"
-  },
-  "resolutions": {
-    "lit": "^2.1.2",
-    "lit-html": "2.1.2",
-    "lit-element": "3.1.2",
-    "@lit/reactive-element": "1.2.1"
-  },
+  "version": "1.1.0",
+  "type": "module",
+  "description": "Sensor Monitor Card for Home Assistant",
+  "main": "dist/sensor-monitor-card.js",
   "scripts": {
-    "build": "npm run lint && npm run rollup && npm run babel",
-    "rollup": "rollup -c",
-    "babel": "babel dist/sensor-monitor-card.js --out-file dist/sensor-monitor-card.js",
-    "lint": "eslint src/* --ext .js",
-    "watch": "rollup -c --watch"
+    "build": "rollup -c",
+    "dev": "rollup -c --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint \"src/**/*.js\"",
+    "lint:fix": "eslint \"src/**/*.js\" --fix"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@vitest/coverage-v8": "^4.0.0",
+    "eslint": "^9.20.0",
+    "jsdom": "^26.0.0",
+    "lit": "^3.3.0",
+    "rollup": "^4.34.0",
+    "vitest": "^4.0.0"
   }
 }
