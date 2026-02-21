@@ -1,160 +1,160 @@
-
 # Sensor Monitor Card
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg?style=for-the-badge)](https://github.com/hacs/integration)
+[![Release][release-shield]][release-link] [![HACS][hacs-shield]][hacs-link] [![GitHub Activity][commits-shield]][commits-link]
 
-![all](example/hero.png)
-[Click me to see more screenshots](example/screenshots.md)
+> A fully customizable monitoring card — define your own sensors, units, setpoints, and thresholds for any use case.
 
-## Multilanguage ReadMe
-
-Click on the following button to choose the language of your ReadMe : [![fr](https://img.shields.io/badge/lang-fr-green.svg)](/README-fr.md) [![en](https://img.shields.io/badge/lang-en-red.svg)](/README.md)
-
-## TOC <!-- omit in toc -->
-
-- [Description](#description)
-- [Support](#support)
-- [Install](#install)
-  - [via HACS](#via-hacs)
-  - [Manualy](#manualy)
-- [Lovelace Set up](#lovelace-set-up)
-  - [Using UI](#using-ui)
-  - [Using YAML](#using-yaml)
-- [Parameters](#parameters)  
-  - [Main options](#main-options)
-  - [Advanced options](#advanced-options)
-- [Hardware](#hardware)
+<!-- TODO: add hero screenshot -->
+<!-- ![screenshot](example/hero.png) -->
 
 ---
 
-## Description
+## Why this card?
 
-The "Sensor Monitor Card" is a home assistant plugin that provides the ability to display customizable sensor information within ranges. 
+Unlike the domain-specific cards, Sensor Monitor Card has **no predefined sensors**. You define everything: names, units, ranges, and icons.
 
-The plugin is highly customizable and offers unparalleled flexibility, making it a valuable tool for users looking to monitor just about any type of data in their home environment.
+Perfect for monitoring **anything** the specialized cards don't cover: server rooms, greenhouses, wine cellars, 3D printers, energy systems, and more.
 
-You can use also 2 pre-defined monitoring card :
+Same powerful rendering engine as the domain cards — gradient bars, color ranges, compact mode, 12 languages.
 
-- The "[Pool Monitoring Card](https://github.com/wilsto/pool-monitor-card)" is a home assistant plugin that display information of 1 to 12 pre-defined sensors of your swimming pool : temperature, pH, ORP levels, TDS, salinity, CYA, calcium, phosphate, alkalinity, filter pressure, free chlorine, total chlorine
+### What you can do
 
-- [Aquarium Monitoring Card]() ** In progress
+- Monitor **server room** temperature, humidity, and UPS battery level
+- Track **solar panel** production vs. household consumption
+- Display **ESP32/ESPHome** custom sensor data with meaningful thresholds
+- Build a dashboard for your **greenhouse**: soil moisture, light, temperature
+- Monitor **3D printer** bed and nozzle temperatures during prints
+- Track **wine cellar** temperature and humidity for proper aging
+
+---
+
+## Sensors — You Define Them
+
+No predefined sensors. Each sensor you add accepts:
+
+| Option | Required | Description |
+|--------|:--------:|-------------|
+| `entity` | **yes** | Home Assistant entity ID |
+| `name` | | Display name |
+| `unit` | | Unit of measurement |
+| `setpoint` | | Ideal target value |
+| `min` / `max` | | Expected range |
+| `step` | | Color threshold step size |
+| `mode` | | `centric` (ideal = center) or `heatflow` (gradient) |
+| `icon` | | MDI icon name |
+
+---
+
+## Installation
+
+### HACS (recommended)
+
+1. Open [HACS](https://hacs.xyz/) → **Frontend** → search for **Sensor Monitor Card**
+2. Install and reload your browser
+
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=wilsto&repository=sensor-monitor-card&category=plugin)
+
+### Manual
+
+1. Download `sensor-monitor-card.js` from the [latest release](https://github.com/wilsto/sensor-monitor-card/releases)
+2. Copy to `config/www/community/sensor-monitor-card/`
+3. Add resource: `/local/community/sensor-monitor-card/sensor-monitor-card.js` (type: module)
+
+---
+
+## Quick Start
+
+```yaml
+type: custom:sensor-monitor-card
+title: "My Sensors"
+sensors:
+  room_temp:
+    entity: sensor.room_temperature
+    name: Room Temperature
+    unit: "°C"
+    setpoint: 21
+    step: 1
+  server_cpu:
+    entity: sensor.server_cpu_temp
+    name: Server CPU
+    unit: "°C"
+    setpoint: 50
+    step: 10
+    icon: mdi:cpu-64-bit
+```
+
+That's it! The card uses sensible defaults for everything else.
+
+---
+
+## Configuration
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `title` | string | — | Card title |
+| `sensors` | object | — | Sensor definitions (see below) |
+| `display.compact` | boolean | `false` | Compact display mode |
+| `display.show_names` | boolean | `true` | Show sensor names |
+| `display.show_icons` | boolean | `true` | Show sensor icons |
+| `display.show_units` | boolean | `true` | Show units |
+| `display.show_labels` | boolean | `true` | Show range labels |
+| `display.gradient` | boolean | `true` | Show gradient bar |
+| `display.show_last_updated` | boolean | `false` | Show last update time |
+| `display.show_icons` | boolean | `true` | Show sensor icons |
+| `language` | string | `en` | Language code |
+
+### Per-sensor overrides
+
+```yaml
+sensors:
+  my_sensor:
+    entity: sensor.xxx        # required
+    name: Custom Name         # override display name
+    unit: "°C"                # override unit
+    setpoint: 25              # ideal value
+    min: 10                   # min of the range
+    max: 40                   # max of the range
+    step: 2                   # threshold step for colors
+    icon: mdi:thermometer     # MDI icon
+    mode: centric             # centric | heatflow
+```
+
+### Multiple sensors of the same type
+
+```yaml
+sensors:
+  temperature:
+    - entity: sensor.sensor_1
+      name: Location 1
+    - entity: sensor.sensor_2
+      name: Location 2
+```
+
+### Languages
+
+12 languages supported: 🇬🇧 English, 🇫🇷 French, 🇩🇪 German, 🇪🇸 Spanish, 🇮🇹 Italian, 🇵🇹 Portuguese, 🇳🇱 Dutch, 🇵🇱 Polish, 🇨🇿 Czech, 🇸🇰 Slovak, 🇮🇱 Hebrew, 🇷🇺 Russian.
 
 ---
 
 ## Support
 
-Hey dude! Help me out for a couple of :beers: or a :coffee:!
-
 [![coffee](https://www.buymeacoffee.com/assets/img/custom_images/black_img.png)](https://bmc.link/wilsto)
 
----
+## Monitor Cards Family
 
-## Install
+This card is part of the **monitor-cards** family — same rendering engine, same features, different presets:
 
+| Card | For | Sensors |
+|------|-----|---------|
+| [Pool Monitor Card](https://github.com/wilsto/pool-monitor-card) | Pool & spa owners | 20 presets |
+| [Aquarium Monitor Card](https://github.com/wilsto/aquarium-monitor-card) | Freshwater & saltwater aquarium keepers | 15 presets |
+| [Air Quality Card](https://github.com/wilsto/air-quality-card) | Homeowners concerned about indoor air quality | 12 presets |
+| [Sensor Monitor Card](https://github.com/wilsto/sensor-monitor-card) | Home Assistant power users | unlimited (custom) ← *you are here* |
 
-#### via HACS
-
-Until the Home Assistant sensor Monitor card is available by default in the HACS directory, click on:
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=wilsto&repository=sensor-monitor-card&category=plugin)
-
-#### Manualy
-
-1. Download the `sensor_monitor_card.js` file from the [latest release available](https://github.com/wilsto/sensor-monitor-card/releases) and save it in your `configuration/www` folder.
-1. Go to `Configuration > Lovelace dashboard > Resources` in Home Assistant and click on `Add resource`.
-    1. Add `/local/community/sensor-monitor-card/sensor_monitor_card.js` to the URL.
-    1. Choose `Javascript Module` as Resource type.
-
----
-
-## Lovelace Set up
-
-
-### Using UI
-
-Not yet possible.
-
-### Using YAML
-
-1. You just need to add a new empty card with `type: 'custom:sensor-monitor-card'` to your cards list and any of the config that you will find below if you want to customize more your card.
-
-#### Example of code
-
-```yaml
-type: 'custom:sensor-monitor-card'
-sensor_1: sensor.your_entity_1
-sensor_1_image: https://icons-for-free.com/iconfiles/png/512/freezer+fridge+kitchen+refrigerator+icon-1320183719511250085.png
-sensor_1_name: Freezer
-sensor_1_unit: °C
-sensor_1_setpoint: -18
-sensor_1_step: 1
-```
-
----
-
-## Parameters
-
-### Sensors Options
-
-  Here's a list of sensors that may be important to monitor, depending on your specific needs. 
-
-  ***All are optionals but you need to define at least one of theses entities**
-  
-| Name | Type | Requirement | Description | Default |
-| -------------- | ----------- | ------------ | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type` | string | **Required** | `custom:sensor-monitor-card` ||
-| `sensor_1` | string | **Optional*** | The entity that measures your sensor 1. |`none`|
-| `sensor_1_name` | String | **Required if sensor_1** | Sensor 1 Name  |`none`|
-| `sensor_1_unit` | String | **Required if sensor_1** | Sensor 1 Unit  |`none`|
-| `sensor_1_setpoint` | Number | **Required if sensor_1** | Sensor 1 Set Point |`none`|
-| `sensor_1_step` | Number | **Required if sensor_1** | Sensor 1 Step |`none`|
-
-There are 13 additional fully customizable entities from 3 to 15.
-Example for sensor 2
-
-| Name | Type | Requirement | Description | Default |
-| -------------- | ----------- | ------------ | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sensor_2` | string | **Optional*** | The entity that measures your sensor 2. |`none`|
-| `sensor_2_name` | String | **Required if sensor_2** | Sensor 2 Name  |`none`|
-| `sensor_2_unit` | String | **Required if sensor_2** | Sensor 2 Unit  |`none`|
-| `sensor_2_setpoint` | Number | **Required if sensor_2** | Sensor 2 Set Point |`none`|
-| `sensor_2_step` | Number | **Required if sensor_2** | Sensor 2 Step |`none`|
-
-
-
-### Advanced options
-
-You can go further with the card by modifying the user interface (UI).
-
-#### User eXperience (UX)
-
-| Name | Type | Requirement | Description | Default |
-| -------------- | ----------- | ------------ | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `title` | string | **Optional** | Monitor Card Title |`none`|
-| `compact` | boolean | **Optional** | Compact Mode |`false`|
-| `show_names` | boolean | **Optional** | Display the name of the entity  |`true`|
-| `show_labels` | boolean | **Optional** | Display the state qualification (Low, Ideal, High)  |`true`|
-| `show_last_updated` | boolean | **Optional** | Display the last updated sensor relative date [Only for compact = false]  |`false`|
-| `language` | string | **Optional** | Interface language (en, fr, es)  |`en`|
-
-Needed to change the unit, setpoint, and steps ? No problem, see additionnal parameters below for each measured entity .
-
-
-
----
-
-## Hardware
-
-Here is a non-exhaustive, non-tested and non-affiliated list of different materials that may capture some information to monitor:
-
-### Predefined
-
-- Hardware for [swimming pool](https://github.com/wilsto/pool-monitor-card#hardware)
-
-### Other 
-
-| Brand | Model  | Sensors | HA Support |
-| -------------- |  ------------ | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ** In progress |   |  |  |
-
-
-
+<!-- Badges -->
+[release-shield]: https://img.shields.io/github/v/release/wilsto/sensor-monitor-card?style=flat-square
+[release-link]: https://github.com/wilsto/sensor-monitor-card/releases
+[hacs-shield]: https://img.shields.io/badge/HACS-Default-orange.svg?style=flat-square
+[hacs-link]: https://hacs.xyz/
+[commits-shield]: https://img.shields.io/github/commit-activity/y/wilsto/sensor-monitor-card?style=flat-square
+[commits-link]: https://github.com/wilsto/sensor-monitor-card/commits/master
