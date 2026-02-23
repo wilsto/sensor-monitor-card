@@ -1,12 +1,10 @@
-/**
- * @fileoverview Sensor Monitor Card - Generic sensor monitoring card for Home Assistant
- * No predefined sensor presets — users define their own sensors, units, setpoints.
- */
+import { customElement } from 'lit/decorators.js';
+import { MonitorCardBase } from '../../core/src/card-base.js';
+import type { CardInfo } from '../../core/src/ha/types.js';
 
-import { MonitorCardBase } from './card-base.js';
+declare let __BUILD_TIMESTAMP__: string;
 
-const VERSION = '1.1.0';
-/* global __BUILD_TIMESTAMP__ */
+const VERSION = '1.2.0';
 const BUILD_TIMESTAMP = typeof __BUILD_TIMESTAMP__ !== 'undefined' ? __BUILD_TIMESTAMP__ : 'dev';
 const CARD_VERSION = `${VERSION} (${BUILD_TIMESTAMP})`;
 
@@ -16,24 +14,18 @@ console.info(
   'color: #6c5ce7; background: white; font-weight: 700;',
 );
 
+@customElement('sensor-monitor-card')
 export class SensorMonitorCard extends MonitorCardBase {
-  static CARD_INFO = {
+  static CARD_INFO: CardInfo = {
     cardType: 'sensor-monitor-card',
     cardName: 'Sensor Monitor Card',
     cardDescription:
       'A generic Home Assistant card for monitoring any sensor with customizable names, units, setpoints, and display options',
   };
 
-  // Empty registry — all sensors are user-defined, no validation against a fixed list
   static SENSORS = {};
 
-  /**
-   * Override setConfig to skip sensor type validation (all types accepted)
-   */
-  setConfig(config) {
-    // Call parent but sensor validation is skipped when SENSORS is empty
+  setConfig(config: any): void {
     super.setConfig(config);
   }
 }
-
-customElements.define('sensor-monitor-card', SensorMonitorCard);
