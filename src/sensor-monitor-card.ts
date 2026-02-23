@@ -1,6 +1,6 @@
 import { customElement } from 'lit/decorators.js';
-import { MonitorCardBase } from '../../core/src/card-base.js';
-import type { CardInfo } from '../../core/src/ha/types.js';
+import { MonitorCardBase } from './card-base.js';
+import type { CardInfo } from './ha/types.js';
 
 declare let __BUILD_TIMESTAMP__: string;
 
@@ -13,6 +13,15 @@ console.info(
   'color: white; background: #6c5ce7; font-weight: 700;',
   'color: #6c5ce7; background: white; font-weight: 700;',
 );
+
+(window as any).customCards = (window as any).customCards || [];
+(window as any).customCards.push({
+  type: 'sensor-monitor-card',
+  name: 'Sensor Monitor Card',
+  description: 'Monitor any sensor with custom names, units, setpoints, and thresholds',
+  preview: true,
+  documentationURL: 'https://github.com/wilsto/sensor-monitor-card',
+});
 
 @customElement('sensor-monitor-card')
 export class SensorMonitorCard extends MonitorCardBase {
@@ -27,5 +36,18 @@ export class SensorMonitorCard extends MonitorCardBase {
 
   setConfig(config: any): void {
     super.setConfig(config);
+  }
+
+  static async getConfigElement(): Promise<HTMLElement> {
+    await import('./editor.js');
+    return document.createElement('sensor-monitor-card-editor');
+  }
+
+  static getStubConfig(): Record<string, unknown> {
+    return {
+      sensors: {
+        custom: { entity: '' },
+      },
+    };
   }
 }

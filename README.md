@@ -3,6 +3,8 @@
 [![Release][release-shield]][release-link] [![HACS][hacs-shield]][hacs-link] [![GitHub Activity][commits-shield]][commits-link]
 
 > A fully customizable monitoring card — define your own sensors, units, setpoints, and thresholds for any use case.
+>
+> **Visual editor included** — configure everything from the UI, no YAML needed.
 
 ![screenshot](example/hero.png)
 
@@ -63,6 +65,16 @@ No predefined sensors. Each sensor you add accepts:
 
 ## Quick Start
 
+### Visual Editor (recommended)
+
+1. In your dashboard, click **Edit Dashboard** (pencil icon)
+2. Click **+ Add Card** → select **Manual** → type `custom:sensor-monitor-card`
+3. Click **Show Visual Editor** to configure sensors, display options and colors — no YAML needed
+
+![editor](resources/editor.png)
+
+### YAML
+
 ```yaml
 type: custom:sensor-monitor-card
 title: "My Sensors"
@@ -87,6 +99,8 @@ That's it! The card uses sensible defaults for everything else.
 ---
 
 ## Configuration
+
+> All options below are also available in the visual editor.
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
