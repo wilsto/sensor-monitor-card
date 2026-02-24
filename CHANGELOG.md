@@ -3,6 +3,12 @@
 All notable changes to Sensor Monitor Card will be documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.8.0] - 2026-02-24
+
+### Added
+
+- Per-sensor `battery_entity` parameter: displays battery level indicator next to sensor data (core feature from pool-monitor-card#9)
+
 ## [1.7.0] - 2026-02-24
 
 ### Added
