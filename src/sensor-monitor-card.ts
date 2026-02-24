@@ -4,7 +4,7 @@ import type { CardInfo } from './ha/types.js';
 
 declare let __BUILD_TIMESTAMP__: string;
 
-const VERSION = '1.6.0';
+const VERSION = '1.7.0';
 const BUILD_TIMESTAMP = typeof __BUILD_TIMESTAMP__ !== 'undefined' ? __BUILD_TIMESTAMP__ : 'dev';
 const CARD_VERSION = `${VERSION} (${BUILD_TIMESTAMP})`;
 

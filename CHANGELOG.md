@@ -3,6 +3,12 @@
 All notable changes to Sensor Monitor Card will be documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.7.0] - 2026-02-24
+
+### Added
+
+- Global `status_entity` parameter: displays a colored status badge at the top of the card with auto-detection (numeric 0-100 or text states) (core feature from pool-monitor-card#10)
+
 ## [1.6.0] - 2026-02-24
 
 ### Added
