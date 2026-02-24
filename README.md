@@ -132,6 +132,17 @@ sensors:
     mode: centric             # centric | heatflow
 ```
 
+### Color modes
+
+| Mode | Gradient | Badge color | Best for |
+|------|----------|-------------|----------|
+| `centric` | warn → low → **normal** → low → warn | Matches gradient zone | pH, ORP — ideal value in the center |
+| `heatflow` | cool → low → warn (blue → orange → red) | **Green** when ideal | Temperature — natural thermal scale |
+
+In **centric** mode, the gradient and badge use the same colors — you see at a glance which zone the value is in.
+
+In **heatflow** mode, the gradient shows the physical temperature scale (cold to hot), while the badge uses green to indicate the value is in the ideal range. Two complementary readings: *where* on the scale vs *is it good*.
+
 ### Multiple sensors of the same type
 
 ```yaml

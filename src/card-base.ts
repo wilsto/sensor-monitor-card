@@ -51,7 +51,7 @@ export class MonitorCardBase extends LitElement {
               >
             </div>
           `;
-        } else if (sensorData?.value === null) {
+        } else if (sensorData?.not_found) {
           return html`
             <div class="warning-message">
               <ha-icon icon="mdi:alert"></ha-icon>
@@ -93,7 +93,16 @@ export class MonitorCardBase extends LitElement {
           sensor.override_value,
           sensor.override,
           sensor.invalid,
+          sensor.step_low,
+          sensor.step_high,
+          sensor.last_updated_entity,
+          sensor.last_updated_attribute,
         );
+
+        if (sensor.availability_entity) {
+          const availState = this.hass?.states?.[sensor.availability_entity]?.state;
+          data[sensorKey].disabled = availState === 'off' || availState === 'unavailable';
+        }
       });
     });
 
@@ -122,6 +131,10 @@ export class MonitorCardBase extends LitElement {
     override_value: string | undefined,
     override: boolean | undefined,
     invalid: boolean | undefined,
+    step_low?: number | undefined,
+    step_high?: number | undefined,
+    last_updated_entity?: string | undefined,
+    last_updated_attribute?: string | undefined,
   ): SensorData {
     const newData: any = {};
     const config = this.getConfig();
@@ -164,6 +177,7 @@ export class MonitorCardBase extends LitElement {
       console.warn(`Entity not found: ${entity}`);
       newData.value = null;
       newData.entity = entity;
+      newData.not_found = true;
       return newData;
     }
 
@@ -176,11 +190,41 @@ export class MonitorCardBase extends LitElement {
       this.countDecimals(parseFloat(entityState.state));
 
     const rawValue = parseFloat(entityState.state);
-    newData.value = isNaN(rawValue) ? null : Number(rawValue.toFixed(precision));
     newData.entity = entity;
 
+    if (isNaN(rawValue)) {
+      newData.value = null;
+      newData.state = '';
+      newData.color = 'var(--disabled-text-color, #bdbdbd)';
+      newData.pct = '50';
+      newData.pct_min = '50';
+      newData.pct_max = '50';
+      newData.pct_cursor = '50';
+      newData.pct_marker = '50';
+      newData.pct_state_step = '50';
+      newData.side_align = 'left';
+      newData.separator = '';
+      newData.unit = '';
+      newData.setpoint_class = ['', '', '', '', ''];
+      newData.progressClass = '';
+      if (config.display.show_last_updated) {
+        newData.last_updated = this.resolveLastUpdated(
+          entityState,
+          last_updated_entity,
+          last_updated_attribute,
+        );
+      }
+      return newData;
+    }
+
+    newData.value = Number(rawValue.toFixed(precision));
+
     if (config.display.show_last_updated) {
-      newData.last_updated = this.timeFromNow(entityState.last_updated);
+      newData.last_updated = this.resolveLastUpdated(
+        entityState,
+        last_updated_entity,
+        last_updated_attribute,
+      );
     }
 
     newData.unit = config.display.show_units ? unit || defaultConfig.unit || '' : '';
@@ -218,16 +262,34 @@ export class MonitorCardBase extends LitElement {
           ? parseFloat(String(defaultConfig.step))
           : 0.1;
 
-    const countDecimals = Math.max(this.countDecimals(sp_val), this.countDecimals(sp_step));
+    // Resolve asymmetric steps: step_low for below setpoint, step_high for above
+    const sp_step_low: number =
+      step_low != null
+        ? parseFloat(String(step_low))
+        : defaultConfig.step_low != null
+          ? parseFloat(String(defaultConfig.step_low))
+          : sp_step;
+    const sp_step_high: number =
+      step_high != null
+        ? parseFloat(String(step_high))
+        : defaultConfig.step_high != null
+          ? parseFloat(String(defaultConfig.step_high))
+          : sp_step;
+
+    const countDecimals = Math.max(
+      this.countDecimals(sp_val),
+      this.countDecimals(sp_step_low),
+      this.countDecimals(sp_step_high),
+    );
 
     newData.setpoint = sp_val;
 
     const minLimitVal = min_limit !== undefined ? Number(min_limit) : -Infinity;
-    const sp_minus_2 = Math.max(minLimitVal, sp_val - 2 * sp_step);
-    const sp_minus_1 = Math.max(minLimitVal, sp_val - sp_step);
+    const sp_minus_2 = Math.max(minLimitVal, sp_val - 2 * sp_step_low);
+    const sp_minus_1 = Math.max(minLimitVal, sp_val - sp_step_low);
     const sp_0 = Math.max(minLimitVal, sp_val);
-    const sp_plus_1 = Math.max(minLimitVal, sp_val + sp_step);
-    const sp_plus_2 = Math.max(minLimitVal, sp_val + 2 * sp_step);
+    const sp_plus_1 = Math.max(minLimitVal, sp_val + sp_step_high);
+    const sp_plus_2 = Math.max(minLimitVal, sp_val + 2 * sp_step_high);
 
     newData.setpoint_class = [
       sp_minus_2.toFixed(countDecimals),
@@ -253,7 +315,7 @@ export class MonitorCardBase extends LitElement {
         Number(newData.value) < Number(newData.setpoint_class[3])
       ) {
         newData.state = config.display.show_labels ? this.getTranslatedText('state.3') : '';
-        newData.color = config.colors.low;
+        newData.color = config.colors.normal;
       } else {
         newData.state = config.display.show_labels ? this.getTranslatedText('state.5') : '';
         newData.color = config.colors.warn;
@@ -293,26 +355,21 @@ export class MonitorCardBase extends LitElement {
     }
     newData.progressClass = name === 'temperature' ? 'progress-temp' : 'progress';
 
+    // Bar width: 3 steps below setpoint + 3 steps above setpoint
+    const barLeft = sp_val - 3 * sp_step_low;
+    const barWidth = 3 * sp_step_low + 3 * sp_step_high;
+
     newData.pct = Math.max(
       0,
-      Math.min(
-        98.5,
-        (Math.max(0, newData.value - (sp_val - 3 * sp_step)) / (6 * sp_step)) * 0.85 * 100 + 15,
-      ),
+      Math.min(98.5, (Math.max(0, newData.value - barLeft) / barWidth) * 0.85 * 100 + 15),
     ).toFixed(0);
     newData.pct_min = Math.max(
       0,
-      Math.min(
-        98.5,
-        (Math.max(0, newData.min_value - (sp_val - 3 * sp_step)) / (6 * sp_step)) * 0.85 * 100 + 15,
-      ),
+      Math.min(98.5, (Math.max(0, newData.min_value - barLeft) / barWidth) * 0.85 * 100 + 15),
     ).toFixed(0);
     newData.pct_max = Math.max(
       0,
-      Math.min(
-        98.5,
-        (Math.max(0, newData.max_value - (sp_val - 3 * sp_step)) / (6 * sp_step)) * 0.85 * 100 + 15,
-      ),
+      Math.min(98.5, (Math.max(0, newData.max_value - barLeft) / barWidth) * 0.85 * 100 + 15),
     ).toFixed(0);
     newData.pct_marker = newData.value > newData.setpoint ? newData.pct - 12 : newData.pct - 5;
     newData.side_align = newData.value > sp_val ? 'right' : 'left';
@@ -334,6 +391,31 @@ export class MonitorCardBase extends LitElement {
     const str = number.toString();
     if (str.includes('.')) return str.split('.')[1].length || 0;
     return 0;
+  }
+
+  resolveLastUpdated(
+    entityState: any,
+    last_updated_entity?: string,
+    last_updated_attribute?: string,
+  ): string {
+    // If last_updated_entity is set, read from that entity instead
+    const sourceEntity = last_updated_entity
+      ? this.hass?.states?.[last_updated_entity]
+      : entityState;
+
+    if (!sourceEntity) {
+      return this.timeFromNow(entityState.last_updated);
+    }
+
+    // If last_updated_attribute is set, read from that attribute
+    if (last_updated_attribute) {
+      const attrValue = sourceEntity.attributes?.[last_updated_attribute];
+      if (attrValue) {
+        return this.timeFromNow(String(attrValue));
+      }
+    }
+
+    return this.timeFromNow(sourceEntity.last_updated);
   }
 
   timeFromNow(dateTime: string): string {

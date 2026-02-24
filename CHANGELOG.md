@@ -3,6 +3,20 @@
 All notable changes to Sensor Monitor Card will be documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.5.0] - 2026-02-24
+
+### Added
+
+- Customizable last updated timestamp: optional `last_updated_entity` and `last_updated_attribute` per sensor to display measurement time from a specific entity attribute (core feature from pool-monitor-card#65)
+- Visual card editor fields for Last updated entity / Last updated attribute
+
+## [1.4.0] - 2026-02-24
+
+### Added
+
+- Asymmetric ranges: optional `step_low` / `step_high` parameters per sensor allow different step sizes below and above the setpoint (core feature from pool-monitor-card#72)
+- Visual card editor fields for Step low / Step high
+
 ## [1.3.0] - 2026-02-23
 
 ### Added
