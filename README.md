@@ -3,8 +3,6 @@
 [![Release][release-shield]][release-link] [![HACS][hacs-shield]][hacs-link] [![GitHub Activity][commits-shield]][commits-link]
 
 > A fully customizable monitoring card — define your own sensors, units, setpoints, and thresholds for any use case.
->
-> **Visual editor included** — configure everything from the UI, no YAML needed.
 
 ![screenshot](example/hero.png)
 
@@ -65,16 +63,6 @@ No predefined sensors. Each sensor you add accepts:
 
 ## Quick Start
 
-### Visual Editor (recommended)
-
-1. In your dashboard, click **Edit Dashboard** (pencil icon)
-2. Click **+ Add Card** → select **Manual** → type `custom:sensor-monitor-card`
-3. Click **Show Visual Editor** to configure sensors, display options and colors — no YAML needed
-
-![editor](resources/editor.png)
-
-### YAML
-
 ```yaml
 type: custom:sensor-monitor-card
 title: "My Sensors"
@@ -100,8 +88,6 @@ That's it! The card uses sensible defaults for everything else.
 
 ## Configuration
 
-> All options below are also available in the visual editor.
-
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `title` | string | — | Card title |
@@ -125,23 +111,36 @@ sensors:
     name: Custom Name         # override display name
     unit: "°C"                # override unit
     setpoint: 25              # ideal value
-    min: 10                   # min of the range
-    max: 40                   # max of the range
+    min: 10                   # number = scale bound, string = tracking entity
+    max: 40                   # same
     step: 2                   # threshold step for colors
     icon: mdi:thermometer     # MDI icon
     mode: centric             # centric | heatflow
 ```
 
-### Color modes
+`min` and `max` accept two forms and the type decides: a **number** is a bound
+of the visible scale, a **string** is an entity whose value places a tracking
+marker on the bar.
 
-| Mode | Gradient | Badge color | Best for |
-|------|----------|-------------|----------|
-| `centric` | warn → low → **normal** → low → warn | Matches gradient zone | pH, ORP — ideal value in the center |
-| `heatflow` | cool → low → warn (blue → orange → red) | **Green** when ideal | Temperature — natural thermal scale |
+Without them, the bar spans `setpoint ± 3 × step`, and the coloured zones
+change every `step`. So `step` is what widens or narrows the green zone —
+a larger `step` is more tolerant, a smaller one more strict.
 
-In **centric** mode, the gradient and badge use the same colors — you see at a glance which zone the value is in.
+### Quantities whose ideal is at one end
 
-In **heatflow** mode, the gradient shows the physical temperature scale (cold to hot), while the badge uses green to indicate the value is in the ideal range. Two complementary readings: *where* on the scale vs *is it good*.
+`centric` and `heatflow` both place the ideal value in the middle. For PM2.5,
+where 0 is best, or ORP, where higher is better, give the four class
+boundaries explicitly and say which way the scale reads:
+
+```yaml
+sensors:
+  pm25:
+    entity: sensor.pm25
+    min: 0
+    max: 20
+    limits: [2, 5, 10, 15]    # four boundaries, replaces setpoint/step
+    # direction: lower_is_better (default) | higher_is_better
+```
 
 ### Multiple sensors of the same type
 
@@ -156,7 +155,9 @@ sensors:
 
 ### Languages
 
-12 languages supported: 🇬🇧 English, 🇫🇷 French, 🇩🇪 German, 🇪🇸 Spanish, 🇮🇹 Italian, 🇵🇹 Portuguese, 🇳🇱 Dutch, 🇵🇱 Polish, 🇨🇿 Czech, 🇸🇰 Slovak, 🇮🇱 Hebrew, 🇷🇺 Russian.
+15 languages supported: Čeština, Deutsch, English, Español, Français, עברית, Magyar, Italiano, Nederlands, Português, Português (Brasil), Română, Русский, Slovenčina, Svenska.
+
+Set one with `display.language`, or pick it in the visual editor.
 
 ---
 
@@ -170,7 +171,7 @@ This card is part of the **monitor-cards** family — same rendering engine, sam
 
 | Card | For | Sensors |
 |------|-----|---------|
-| [Pool Monitor Card](https://github.com/wilsto/pool-monitor-card) | Pool & spa owners | 21 presets |
+| [Pool Monitor Card](https://github.com/wilsto/pool-monitor-card) | Pool & spa owners | 25 presets |
 | [Aquarium Monitor Card](https://github.com/wilsto/aquarium-monitor-card) | Freshwater & saltwater aquarium keepers | 15 presets |
 | [Air Quality Card](https://github.com/wilsto/air-quality-card) | Homeowners concerned about indoor air quality | 12 presets |
 | [Sensor Monitor Card](https://github.com/wilsto/sensor-monitor-card) | Home Assistant power users | unlimited (custom) ← *you are here* |
