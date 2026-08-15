@@ -3,6 +3,20 @@
 All notable changes to Sensor Monitor Card will be documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.9.0] - 2026-08-15
+
+### Fixed
+
+- Sensors with an unavailable/unknown state no longer prevent the card from rendering
+- Sensor add dropdown in the visual editor works again on recent Home Assistant versions (native select instead of the removed mwc-list-item)
+- `status_entity` now recognises text states GREEN/RED/YELLOW/high/low/normal
+
+### Added
+
+- `name_font_size` and `name_font_weight` display options, in both normal and compact mode, also exposed in the visual editor
+
+> These core changes shipped in pool-monitor v2.10.2 / v2.11.0 on 2026-03-29 but never reached this card: the release is tagged per package, and this one was not re-tagged.
+
 ## [1.8.0] - 2026-02-24
 
 ### Added
