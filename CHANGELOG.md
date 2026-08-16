@@ -3,6 +3,55 @@
 All notable changes to Sensor Monitor Card will be documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.12.0] - 2026-08-15
+
+### Fixed
+
+- **A scale set with `limits` no longer describes itself as a centred one.** It borrowed the wording of a scale whose middle band is the ideal, so a reading in the middle of its range was announced as *Ideal* — carbon monoxide at 20 ppm, more than twice the World Health Organization eight-hour guideline. Clean air at the other end read *Too Low*, in blue, as though something were wrong. The bands now carry the names of the [European Air Quality Index](https://airindex.eea.europa.eu/AQI/index.html), and the bar runs good to bad instead of being painted bad-good-bad.
+
+  ```text
+    3 ppm    Too Low     ->  Good
+   20 ppm    Ideal       ->  Moderate
+  120 ppm    Too High    ->  Very Poor
+  ```
+
+  Only sensors configured with `limits` are concerned — the new carbon monoxide preset, and hand-written configurations following the PM2.5 and ORP examples. Every other sensor keeps exactly the scale it had.
+
+- **A scale set with `limits` alone no longer collapses.** Giving the four thresholds without also giving `min` and `max` left the bar with no width, and its five numbers piled up on top of each other at the right edge. The thresholds now set the range themselves.
+
+  ```text
+  where the five labels sat, as a percentage across the bar
+  before:  0 | 100 | 100 | 100 | 100     (four of them stacked at the right edge)
+  after:   0 | 6.9 | 10.3 | 34.5 | 100
+  ```
+
+- **The last number of the scale is no longer cut in half.** It was centred on the right edge, so half of it fell outside the card — and the card hides what overflows. **`87` was displayed as `8`.** A truncated number does not look broken, it looks like a different value. The first and last labels are now aligned inwards.
+
+- **An untranslated label shows English instead of an internal key.** In a language where a sensor name had not been translated yet, the card printed `sensor.humidity` where a name belonged. It now falls back to English, so a new sensor no longer has to wait for fifteen translations before it can be shipped.
+
+### Added
+
+- **Read the value from an attribute instead of the entity state.** Several integrations publish more than one measurement on a single entity — a target temperature, a battery level, a raw reading. Until now each one needed its own template sensor:
+
+  ```yaml
+  sensors:
+    temperature:
+      entity: climate.pool_heat_pump
+      attribute: current_temperature
+  ```
+
+  If the attribute does not exist, the sensor reads as unavailable. It does not quietly fall back to the state, which would show an unrelated number in the place of the one you asked for.
+
+### Documentation
+
+- **The Styling example in the README now actually does something.** As printed, it changed nothing: the card ships its styles as an adopted stylesheet, and those beat an injected rule at equal specificity. A property the card already sets needs `!important` or a more specific selector; a property it does not set applies as-is.
+
+  ```text
+  .pool-monitor-title { font-size: 2rem }              ->  21px, no effect
+  .pool-monitor-title { font-size: 2rem !important }   ->  28px
+  h1.pool-monitor-title { font-size: 2rem }            ->  28px
+  ```
+
 ## [1.11.1] - 2026-08-15
 
 ### Documentation
