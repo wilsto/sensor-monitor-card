@@ -1,6 +1,6 @@
 {
   "name": "sensor-monitor-card",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "type": "module",
   "description": "Sensor Monitor Card for Home Assistant",
   "main": "dist/sensor-monitor-card.js",
