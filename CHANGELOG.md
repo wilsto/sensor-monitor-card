@@ -3,6 +3,12 @@
 All notable changes to Sensor Monitor Card will be documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.14.1] - 2026-08-16
+
+### Documentation
+
+- **The compatible hardware tables gained the devices the cards were built for.** Two of them, a pool monitor and an air quality monitor, had features written specifically for them and were still not listed as supported. Both are there now, with what they actually measure and how they reach Home Assistant.
+
 ## [1.14.0] - 2026-08-16
 
 ### Added
