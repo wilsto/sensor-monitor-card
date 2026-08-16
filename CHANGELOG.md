@@ -3,6 +3,21 @@
 All notable changes to Sensor Monitor Card will be documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.15.0] - 2026-08-16
+
+### Fixed
+
+- **Eighteen measurement names were missing and are now available.** This card lets you name a measurement whatever you like, and falls back to a shared list of known names when you do not. That list had no entry for PM2.5, PM10, VOC, TVOC, CO2, formaldehyde, radon, air quality index, noise level, ammonia, nitrite, nitrate, general hardness or carbonate hardness, so using one of those keys printed the key itself.
+
+  ```yaml
+  type: custom:sensor-monitor-card
+  sensors:
+    pm25:
+      entity: sensor.bedroom_pm25
+  ```
+
+  That now reads PM2.5 under the bar, in whichever of the seventeen languages the card is set to, instead of `sensor.pm25`. Setting `name:` yourself still overrides it, as before.
+
 ## [1.14.1] - 2026-08-16
 
 ### Documentation
