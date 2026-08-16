@@ -4,7 +4,7 @@
 
 > A fully customizable monitoring card: define your own sensors, units, setpoints, and thresholds for any use case.
 
-![screenshot](example/hero.png)
+![screenshot](example/hero.gif)
 
 ---
 
