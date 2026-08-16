@@ -6,6 +6,8 @@
 
 ![screenshot](example/hero.gif)
 
+[See the eight ways to configure this card](example/screenshots.md)
+
 ---
 
 ## Why this card?
