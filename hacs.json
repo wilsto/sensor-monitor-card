@@ -1,5 +1,6 @@
 {
-  "name": "Sensor Monitor Card",
-  "render_readme": false,
-  "filename": "sensor-monitor-card.js"
+  "name": "SensorMonitorCard",
+  "content_in_root": false,
+  "filename": "sensor-monitor-card.js",
+  "render_readme": true
 }
