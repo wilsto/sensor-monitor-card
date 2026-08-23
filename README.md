@@ -106,7 +106,7 @@ That's it! The card uses sensible defaults for everything else.
 | `display.name_font_size` | string | - | Font size of the sensor name, e.g. `0.8em` |
 | `display.name_font_weight` | string | - | Font weight of the sensor name |
 | `display.language` | string | `en` | Language code, one of the 17 shipped |
-| `colors.*` | string | - | Any colour of the palette, see the Styling section |
+| `colors.*` | string | - | Any colour of the palette, see the Colours section |
 
 ### Per-sensor overrides
 
@@ -178,22 +178,51 @@ sensors:
     # direction: lower_is_better (default) | higher_is_better
 ```
 
-### Multiple sensors of the same type
+### Several probes for the same measurement
+
+Two rooms on one row, a nozzle and a bed on the same printer:
+any sensor key accepts a **list** instead of a single block. Each entry
+gets its own bar. Nothing to install, nothing to enable, it has always
+worked.
 
 ```yaml
+type: custom:sensor-monitor-card
+title: "My Sensors"
 sensors:
-  temperature:
-    - entity: sensor.sensor_1
-      name: Location 1
-    - entity: sensor.sensor_2
-      name: Location 2
+  room_temp:
+    - entity: sensor.room_temp_living_room
+      name: Living room
+      unit: "°C"
+      setpoint: 21
+      step: 1
+    - entity: sensor.room_temp_bedroom
+      name: Bedroom
+      unit: "°C"
+      setpoint: 21
+      step: 1
 ```
+
+- **Each entry takes the full set of options above.** `min`, `max`, `setpoint`, `icon`, `status_entity`, `battery_entity`, all of them, and they are independent.
+- **Give each one a `name`.** Without it every entry falls back to the same default label, and the bars become impossible to tell apart.
+- **`entity` is required on every entry.** A missing one stops the card with `Missing entity for room_temp[1]`, the number being the position in the list counting from zero.
+
+> **In the visual editor**: type the same sensor key again in the add field and a second entry appears. Entries show as *#1*, *#2*, each expandable and deletable on its own.
 
 ### Styling
 
 The card renders a standard `ha-card`, so it responds to your Home Assistant
 theme and to [card-mod](https://github.com/thomasloven/lovelace-card-mod) like
 any other card.
+
+> **Install card-mod first, it does not come with Home Assistant.**
+> It is a separate frontend component, not part of this card and not
+> bundled with it. Until it is installed a `card_mod:` block is simply
+> ignored: the styles do nothing and no error says why.
+>
+> It is in the HACS default store. HACS → search **card-mod** → install →
+> reload your browser. Everything in this section assumes it is there;
+> installation details live in the
+> [card-mod repository](https://github.com/thomasloven/lovelace-card-mod).
 
 **Transparent, borderless:**
 
@@ -243,6 +272,32 @@ card_mod:
 > they follow the sensor value rather than a stylesheet. Everything listed
 > above is static and can be overridden.
 
+### Colours
+
+The bands are painted from an eight-colour palette. Override any of them
+under `colors:`, in YAML or in the visual editor. No card-mod involved.
+
+```yaml
+colors:
+  normal: "#00b894"
+  warn: "#e17055"
+```
+
+| Key | Default | What it paints |
+| --- | --- | --- |
+| `colors.low` | `#fdcb6e` | One band out from the ideal, on either side of a centric scale |
+| `colors.warn` | `#e17055` | The outer band, and the hot end of a `heatflow` scale |
+| `colors.normal` | `#00b894` | The ideal band, in every mode |
+| `colors.fair` | `#7ec181` | Second band of a `limits` scale, still acceptable but no longer ideal |
+| `colors.cool` | `#00BFFF` | The cold end of a `heatflow` scale, and the low end of its gradient bar |
+| `colors.hazardous` | `#8e44ad` | Worst band of a `limits` scale |
+| `colors.marker` | `#000000` | The current-value cursor |
+| `colors.hi_low` | `#00000099` | The `min` and `max` tracking ticks |
+
+> `fair` and `hazardous` only appear on a scale built with `limits`, where
+> the reading runs from good to bad in one direction. A centric scale never
+> reaches them.
+
 ### Languages
 
 17 languages supported: Català, Čeština, Dansk, Deutsch, English, Español, Français, עברית, Magyar, Italiano, Nederlands, Português, Português (Brasil), Română, Русский, Slovenčina, Svenska.
@@ -261,14 +316,21 @@ Set one with `display.language`, or pick it in the visual editor.
 
 This card wouldn't be what it is today without our amazing contributors!
 
-- [Sebaer1976](https://github.com/sebaer1976): German translation
+- [arketec](https://github.com/arketec): Design of the derivative-driven trend indicators (chevrons), from his fork ([commit 4730f95](https://github.com/arketec/pool-monitor-card/commit/4730f95))
+- [sierramike](https://github.com/sierramike): Home Assistant rendering compliance: the `ha-card` wrapper and the card picker registration ([pool-monitor-card#67](https://github.com/wilsto/pool-monitor-card/pull/67))
+- [daveewall](https://github.com/daveewall): WaterGuru SENSE report that specified the card-level `battery_entity` and the per-sensor `status_entity` ([pool-monitor-card#77](https://github.com/wilsto/pool-monitor-card/issues/77))
+- [ahuffman](https://github.com/ahuffman): Proposal to list several entities under one sensor type, which became the v2 configuration format ([pool-monitor-card#25](https://github.com/wilsto/pool-monitor-card/issues/25))
+- [woopstar](https://github.com/woopstar): Showed that Danish plurals differ from one time unit to the next, which produced the `time_plural` block every locale carries ([pool-monitor-card#53](https://github.com/wilsto/pool-monitor-card/issues/53))
+- [rocknrolla85](https://github.com/rocknrolla85): Named what both scale modes got wrong for ORP and TDS, which produced `direction: lower_is_better / higher_is_better` ([pool-monitor-card#85](https://github.com/wilsto/pool-monitor-card/issues/85))
+- [Kraut-bob](https://github.com/Kraut-bob): Described the third scale mode, for readings whose best value is zero ([air-quality-card#2](https://github.com/wilsto/air-quality-card/issues/2))
+- [Seebaer1976](https://github.com/seebaer1976): German translation
 - [Splitti](https://github.com/splitti): German translation
-- [jorgemiguel4](https://github.com/jorgemiguel4): Portuguese translation
 - [Djgel](https://github.com/djgel): Portuguese translation
 - [CosminFRC](https://github.com/CosminFRC): Romanian translation
 - [Misa1515](https://github.com/misa1515): Slovak translation
-- [ViPeR5000](https://github.com/ViPeR5000): Polish translation
+- [ViPeR5000](https://github.com/ViPeR5000): Portuguese translation
 - [Yehuda](https://github.com/Yehuda): Hebrew translation
+- [mmiguel4](https://github.com/mmiguel4): Portuguese translation
 - [MrSnakeSPb](https://github.com/MrSnakeSPb): Russian translation
 - [taczirjak](https://github.com/taczirjak): Hungarian translation
 - [KIDNORswe](https://github.com/KIDNORswe): Swedish translation
