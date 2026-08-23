@@ -36,13 +36,16 @@ No predefined sensors. Each sensor you add accepts:
 | Option | Required | Description |
 |--------|:--------:|-------------|
 | `entity` | **yes** | Home Assistant entity ID |
+| `setpoint` | **yes**, or `limits` | Ideal target value, the reference the bands are built around |
+| `limits` | **yes**, or `setpoint` | Four explicit boundaries, for a reading whose ideal is at one end |
 | `name` | | Display name |
 | `unit` | | Unit of measurement |
-| `setpoint` | | Ideal target value |
-| `min` / `max` | | Expected range |
-| `step` | | Color threshold step size |
+| `min` / `max` | | Expected range. **Not a scale**, see below |
+| `step` | | Width of one band around the setpoint |
 | `mode` | | `centric` (ideal = center) or `heatflow` (gradient) |
 | `icon` | | MDI icon name |
+
+A sensor with neither a `setpoint` nor `limits` is refused: the card shows a warning in its place rather than judging a reading against nothing. See [Every sensor needs a scale](#every-sensor-needs-a-scale).
 
 ---
 
@@ -161,6 +164,30 @@ marker on the bar.
 Without them, the bar spans `setpoint ± 3 × step`, and the coloured zones
 change every `step`. So `step` is what widens or narrows the green zone:
 a larger `step` is more tolerant, a smaller one more strict.
+
+### Every sensor needs a scale
+
+A reading is only worth showing if it can be compared to something. A sensor
+that carries no reference is **refused**: the card shows a warning in its place
+and draws no bar for it, while the rest of the card keeps working.
+
+A sensor has a scale when it has either of these:
+
+- four explicit `limits`, or
+- a `setpoint`, written here or read from `setpoint_entity`. `step` then says
+  how wide the bands around it are. Give it one: with no preset behind the
+  sensor it falls back to `0.1`, which suits almost no measurement.
+
+The two near misses are worth naming, because both look like a scale:
+
+- **`min` and `max` are not one.** They size the bar. A sensor with
+  `min: 0, max: 100` and nothing else draws a full-width bar with the cursor in
+  the right place, and still has nothing to judge the reading against.
+- **`step` alone is not one either.** It is the width of a band, with no value
+  to build the bands around.
+
+This card has no presets, so **every sensor you add has to carry its own**.
+That is the one option beyond `entity` you cannot leave out.
 
 ### Quantities whose ideal is at one end
 
