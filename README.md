@@ -16,7 +16,7 @@ Unlike the domain-specific cards, Sensor Monitor Card has **no predefined sensor
 
 Perfect for monitoring **anything** the specialized cards don't cover: server rooms, greenhouses, wine cellars, 3D printers, energy systems, and more.
 
-Same powerful rendering engine as the domain cards: gradient bars, color ranges, compact mode, 12 languages.
+Same powerful rendering engine as the domain cards: gradient bars, color ranges, compact mode, 17 languages.
 
 ### What you can do
 
@@ -332,6 +332,43 @@ colors:
 17 languages supported: Català, Čeština, Dansk, Deutsch, English, Español, Français, עברית, Magyar, Italiano, Nederlands, Português, Português (Brasil), Română, Русский, Slovenčina, Svenska.
 
 Set one with `display.language`, or pick it in the visual editor.
+
+---
+
+## Troubleshooting
+
+**The card does not appear, or Home Assistant says `Custom element doesn't exist`.**
+Reload the page while bypassing the cache (Ctrl+Shift+R, or Cmd+Shift+R on a Mac). In the companion app, clear the frontend cache in its settings. Then check that the resource is listed under Settings → Dashboards → Resources: HACS adds it on install.
+
+**A warning is shown where a reading should be.** The card says what is wrong in your language. In English:
+
+- *This card has no sensor to show. Add at least one under `sensors` in the card configuration.* The card has no sensor yet: see [Quick Start](#quick-start).
+- *Entity `<entity>` could not be found. Check that the entity ID is spelled the way Home Assistant has it, and that the integration providing it is loaded.* Compare the ID with Settings → Devices & services → Entities.
+- *Sensor `<name>` has no scale, so no reading can be judged against anything. Give it four `limits`, or a `setpoint` with a `step`. Note that `min` and `max` only size the bar, they are not a scale.* See [Every sensor needs a scale](#every-sensor-needs-a-scale).
+- *No data for this sensor.* The entity has no readable value. Look at its state in Developer Tools → States: `unknown` or `unavailable` comes from the integration, not from the card.
+
+**A reading I consider fine is painted orange or red.**
+The bands come from a `setpoint` with a `step`, or from four `limits`. Write your own for that sensor, as shown in [Per-sensor overrides](#per-sensor-overrides). `min` and `max` change the size of the bar, not the bands.
+
+**My sensor reports in Fahrenheit.**
+Nothing to do. Since the October 2026 release, a preset written in °C follows a sensor that reports in °F, and the reading keeps the number Home Assistant shows. A `setpoint` or `step` you write yourself is read in your sensor's unit.
+
+**Too many or too few decimals.**
+The card uses the display precision Home Assistant has for the entity. Change it in the entity's settings, under Display precision.
+
+**The value I want is an attribute, not the state.**
+Add `attribute: <name>` to that sensor: see [Per-sensor overrides](#per-sensor-overrides).
+
+**The badge at the top of the screenshots.**
+It shows the state of any entity you point `status_entity` at, at the card level or for one sensor: see [Configuration](#configuration).
+
+**`card_mod` styles have no effect.**
+card-mod is a separate card and must be installed first: see [Styling](#styling).
+
+**Will my device work?**
+Any device that gives Home Assistant a numeric sensor works.
+
+Still stuck? [Open an issue](https://github.com/wilsto/sensor-monitor-card/issues) with your card YAML, your Home Assistant version and a screenshot.
 
 ---
 
